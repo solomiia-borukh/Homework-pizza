@@ -17,6 +17,7 @@
 - Tailwind CSS
 - shadcn/ui
 - pnpm (package manager)
+- Vitest + React Testing Library (testing)
 
 ---
 
