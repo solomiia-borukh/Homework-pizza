@@ -18,7 +18,7 @@ Routing conventions for this project. Builds on `fsd-slice` (where routes live),
 ## Routing layout
 
 ```
-proxy.ts                                   # root — Next.js 16 replacement for middleware
+src/proxy.ts                               # Next.js 16 replacement for middleware (sits in src/ beside app/, not the repo root)
 src/app/
 ├── (web)/                                 # pages
 │   ├── page.tsx                           # list (Server Component, initial render)
@@ -45,9 +45,11 @@ src/app/
 
 ## Protecting `/favorites`
 
-**Primary — `proxy.ts`** (root, replaces middleware in Next.js 16):
-- Check the session; if absent, redirect to `/login`.
-- Scope it to the protected paths (e.g. matcher/condition for `/favorites`), not the whole app.
+**Primary — `src/proxy.ts`** (replaces middleware in Next.js 16; lives in `src/` beside `app/` because the project uses a `src/` directory — Next does not detect it at the repo root):
+- Optimistic check only — use `getSessionCookie` from `better-auth/cookies` (cookie presence, edge-safe). Do not call the DB / full `getSession` here.
+- If the cookie is absent, redirect to `/login`; if present, redirect signed-in users away from `/login` and `/register`.
+- Scope via `matcher` to the protected paths, not the whole app.
+- Pair it with a real server-side session check on the protected page itself (proxy is optimistic, not a full guard).
 
 **Alternative — server-side check** (when route-level logic is clearer):
 - In the `/favorites` Server Component (or its layout), read the session server-side; if absent, `redirect("/login")`.

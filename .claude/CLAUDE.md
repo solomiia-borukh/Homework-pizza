@@ -36,7 +36,7 @@ src/
 │   ├── widgets/          # Layer — self-sufficient parts of functionality/interface
 │   ├── features/         # Layer — reusable implementations
 │   ├── entities/         # Layer — business entities (slices: api/, models/)
-│   └── shared/           # Layer — reusable code (segments: ui/, hooks/, store/, interfaces/, assets/)
+│   └── shared/           # Layer — reusable code (segments: ui/, hooks/, store/, interfaces/, assets/, validation/, providers/)
 ├── config/               # App config (segments: env/, fonts/, styles/)
 └── pkg/                  # External packages/utilities
 ```
@@ -163,6 +163,8 @@ Never start writing code immediately.
 - Use Lucide icons.
 - Use cn() for all conditional class names.
 - Avoid inline styles.
+- All clickable elements (buttons, links, icon buttons) must have the `cursor-pointer` Tailwind class.
+- Every page must be responsive using a **mobile-first** approach. Breakpoints: default (mobile), `sm:` 640px, `md:` 768px, `lg:` 1024px. Never write desktop-first overrides.
 
 ---
 

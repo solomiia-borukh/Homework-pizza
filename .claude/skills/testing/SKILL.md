@@ -61,6 +61,7 @@ function gets tests for both valid and invalid input.
 - Mock **external dependencies only** — never pure functions.
 - Mock: network requests, the database (the Drizzle client in `@/pkg/db`), authentication providers (`@/pkg/auth` / Better Auth), and external APIs.
 - Do not mock our own pure functions, validation schemas, or utilities — test them for real.
+- **Do not mock TanStack Query** (`useQuery`, `useMutation`, `useInfiniteQuery`, etc.). Mock the underlying fetch/API call instead — TanStack Query is an implementation detail that should work transparently in tests.
 
 ## React testing
 

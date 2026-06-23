@@ -19,7 +19,7 @@ src/
 │   ├── widgets/          # Layer — self-sufficient parts of functionality/interface
 │   ├── features/         # Layer — reusable implementations
 │   ├── entities/         # Layer — business entities (slices: api/, models/)
-│   └── shared/           # Layer — reusable code (segments: ui/, hooks/, store/, interfaces/, assets/)
+│   └── shared/           # Layer — reusable code (segments: ui/, hooks/, store/, interfaces/, assets/, validation/, providers/)
 ├── config/               # App config (segments: env/, fonts/, styles/)
 └── pkg/                  # External packages/utilities
 ```
@@ -101,6 +101,8 @@ hooks/<hook-name>.hook.ts
 store/<store-name>.store.ts
 interfaces/<interface-name>.interface.ts
 assets/icon/<name>.svg
+validation/<name>.constant.ts            # shared Zod schemas (e.g. auth.constant.ts)
+providers/<name>-provider.component.tsx  # app-wide React providers (e.g. query-provider)
 ```
 
 **config/** — segments: `env/` (`env.client.ts`, `env.server.ts`), `fonts/` (`font.ts`), `styles/` (`global.css`).

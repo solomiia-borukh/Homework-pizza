@@ -20,6 +20,7 @@ export default defineConfig({
         'src/app/shared/hooks/**',
         'src/app/shared/store/**',
         'src/pkg/**',
+        'src/*.ts',
       ],
       exclude: [
         'src/app/shared/ui/**',
