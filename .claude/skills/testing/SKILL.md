@@ -84,11 +84,45 @@ container.querySelector('.submit-button')
 
 ## Test structure
 
-```ts
-describe('createOrder', () => {
-  it('creates an order successfully', () => {})
+### Test function
 
-  it('throws when the cart is empty', () => {})
+Always use `test(...)`, never `it(...)`. Every test name must start with `"it "`:
+
+```ts
+test('it creates an order successfully', () => {})
+test('it throws when the cart is empty', () => {})
+```
+
+### Top-level describe
+
+The outermost `describe` follows this exact format:
+
+```
+"<TestType> | <ComponentType> | <ComponentName>"
+```
+
+- **TestType:** `Unit` or `Integration`
+- **ComponentType:** `Page` (full-page integration tests) or `Component` (isolated component / widget / feature tests)
+- **ComponentName:** PascalCase name of the component under test, e.g. `ItemCard`, `ItemsList`, `LoginPage`
+
+Examples:
+
+```ts
+describe('Unit | Component | ItemCard', () => { ... })
+describe('Integration | Page | LoginPage', () => { ... })
+describe('Integration | Component | ItemsList', () => { ... })
+describe('Integration | Component | ToggleFavoriteButton', () => { ... })
+```
+
+Nested `describe` blocks group related cases and use plain English labels (no format constraint):
+
+```ts
+describe('Unit | Component | ItemCard', () => {
+  test('it renders the title', () => {})
+
+  describe('Edge cases', () => {
+    test('it shows an em dash when description is null', () => {})
+  })
 })
 ```
 
