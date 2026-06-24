@@ -11,16 +11,16 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 md:px-8">
       <div className="mb-6 flex flex-col gap-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-semibold">All Pizzas</h1>
+          <h1 className="text-2xl font-semibold">My Favorites</h1>
           <Link
-            href="/favorites"
-            className={cn(buttonVariants({ variant: 'outline' }))}
+            href="/items"
+            className={cn(buttonVariants({ variant: 'ghost' }))}
           >
-            My Favorites
+            All Pizzas
           </Link>
         </div>
         <Suspense>
-          <ItemSearch />
+          <ItemSearch basePath="/favorites" />
         </Suspense>
       </div>
       {children}

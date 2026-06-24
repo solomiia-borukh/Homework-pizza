@@ -200,7 +200,17 @@ describe('Integration | Component | ToggleFavoriteButton', () => {
       })
 
       fetchMock.mockClear()
-      fetchMock.mockResolvedValue(makeJsonResponse({ ok: true }))
+      fetchMock.mockImplementation((url: string, init?: RequestInit) => {
+        if (url.includes('/api/favorites') && init?.method === 'DELETE') {
+          return Promise.resolve(makeJsonResponse({ ok: true }))
+        }
+
+        if (url.includes('/api/favorites')) {
+          return Promise.resolve(makeFavoritesResponse([]))
+        }
+
+        return Promise.resolve(makeJsonResponse({}))
+      })
 
       await user.click(
         screen.getByRole('button', { name: 'Remove from favorites' }),
