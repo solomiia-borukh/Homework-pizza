@@ -1,7 +1,6 @@
 export {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,

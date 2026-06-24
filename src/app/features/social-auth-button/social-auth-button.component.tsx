@@ -31,8 +31,11 @@ export const SocialAuthButton = () => {
 
   const handleClick = async () => {
     setIsPending(true)
-    await signIn.social({ provider: 'google', callbackURL: '/items' })
-    setIsPending(false)
+    try {
+      await signIn.social({ provider: 'google', callbackURL: '/items' })
+    } finally {
+      setIsPending(false)
+    }
   }
 
   return (

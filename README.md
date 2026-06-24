@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pizza Homework
 
-## Getting Started
+A Next.js 16 pizza catalog with authentication and favorites.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** — App Router, Server Components
+- **Drizzle ORM** — database access (Supabase Postgres)
+- **Better Auth** — email/password + Google OAuth
+- **TanStack Query** — server state, optimistic updates
+- **Tailwind CSS** + shadcn/ui
+
+## Getting started
+
+### 1. Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy the example file and fill in your values:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cp .env.example .env.local
+```
 
-## Learn More
+| Variable | Description |
+|---|---|
+| `DATABASE_URL` | Supabase Postgres connection string. Go to **Supabase → Project Settings → Database → Connection string (URI)**. Use the **Transaction pooler** URL (port 6543) and append `?pgbouncer=true` to avoid connection limit errors in development. |
+| `BETTER_AUTH_SECRET` | Random string, minimum 32 characters. Generate with `openssl rand -base64 32`. |
+| `BETTER_AUTH_URL` | Base URL of the app. Use `http://localhost:3000` locally. |
+| `GOOGLE_CLIENT_ID` | Google OAuth client ID. Optional — only needed for Google sign-in. |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret. Optional. |
 
-To learn more about Next.js, take a look at the following resources:
+> **Never commit `.env.local`.** It is listed in `.gitignore`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Run migrations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Generate and apply the database schema:
 
-## Deploy on Vercel
+```bash
+pnpm db:generate
+pnpm db:migrate
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Seed the database
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Populate the `items` table with sample pizzas:
+
+```bash
+pnpm db:seed
+```
+
+> Running seed multiple times inserts duplicates. If you need a clean slate, truncate the table first via the Supabase SQL editor: `TRUNCATE TABLE items RESTART IDENTITY;`
+
+### 5. Start the dev server
+
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+---
+
+## Scripts
+
+| Command | Description |
+|---|---|
+| `pnpm dev` | Start development server |
+| `pnpm build` | Production build |
+| `pnpm start` | Start production server |
+| `pnpm lint` | Run ESLint (zero warnings) |
+| `pnpm lint:fix` | Auto-fix lint issues |
+| `pnpm test` | Run all tests once |
+| `pnpm test:watch` | Run tests in watch mode |
+| `pnpm test:coverage` | Run tests with coverage report |
+| `pnpm db:generate` | Generate Drizzle migration files |
+| `pnpm db:migrate` | Apply pending migrations |
+| `pnpm db:studio` | Open Drizzle Studio (database GUI) |
+| `pnpm db:seed` | Seed the database with sample data |

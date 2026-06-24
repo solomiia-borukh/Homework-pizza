@@ -14,6 +14,13 @@ type SearchValues = {
   sort: 'newest' | 'az' | 'za'
 }
 
+const validSorts: SearchValues['sort'][] = ['newest', 'az', 'za']
+
+const toValidSort = (value: string | null): SearchValues['sort'] =>
+  validSorts.includes(value as SearchValues['sort'])
+    ? (value as SearchValues['sort'])
+    : 'newest'
+
 interface Props {
   basePath?: string
 }
@@ -25,7 +32,7 @@ export const ItemSearch: FC<Props> = ({ basePath = '/items' }) => {
   const { register, control, setValue } = useForm<SearchValues>({
     defaultValues: {
       term: searchParams.get('term') ?? '',
-      sort: (searchParams.get('sort') as SearchValues['sort']) ?? 'newest',
+      sort: toValidSort(searchParams.get('sort')),
     },
   })
 

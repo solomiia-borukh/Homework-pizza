@@ -29,6 +29,10 @@ export const POST = async (request: NextRequest) => {
 
   const { itemId } = await request.json()
 
+  if (!itemId || typeof itemId !== 'string') {
+    return NextResponse.json({ error: 'itemId is required' }, { status: 400 })
+  }
+
   await db
     .insert(favorites)
     .values({ userId: session.user.id, itemId })

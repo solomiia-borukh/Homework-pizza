@@ -10,7 +10,7 @@ const NotFoundPage: FC = () => {
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 text-center">
       <Pizza className="size-12 text-muted-foreground" />
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-semibold">Page not found</h1>
+        <h1 className="text-2xl font-semibold">Pizza not found</h1>
         <p className="text-muted-foreground">
           The page you are looking for does not exist.
         </p>
