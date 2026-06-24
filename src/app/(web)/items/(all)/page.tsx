@@ -5,7 +5,6 @@ import {
 } from '@tanstack/react-query'
 import { type SearchParams } from 'next/dist/server/request/search-params'
 import type { FC } from 'react'
-import { Suspense } from 'react'
 
 import { itemsQueryOptions } from '@/app/entities/item'
 import { ItemsList } from '@/app/widgets/items-list'
@@ -26,9 +25,7 @@ const ItemsPage: FC<Props> = async ({ searchParams }) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense>
-        <ItemsList />
-      </Suspense>
+      <ItemsList />
     </HydrationBoundary>
   )
 }

@@ -6,4 +6,5 @@ export const itemsQueryOptions = (params: ItemsParams) =>
   queryOptions({
     queryKey: ['items', params],
     queryFn: () => fetchItems(params),
+    staleTime: 5 * 60 * 1000,
   })

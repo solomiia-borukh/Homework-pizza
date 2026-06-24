@@ -1,4 +1,8 @@
+import { notFound } from 'next/navigation'
+
 const ItemPage = () => {
+  notFound()
+
   return null
 }
 
