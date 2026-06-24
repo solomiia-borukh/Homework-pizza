@@ -27,10 +27,7 @@ export const ToggleFavoriteButton: FC<Props> = ({ itemId }) => {
   const handleClick = (e: MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-
-    if (isPending) return
-
-    mutate({ itemId, isFavorite })
+    if (!isPending) mutate({ itemId, isFavorite })
   }
 
   return (

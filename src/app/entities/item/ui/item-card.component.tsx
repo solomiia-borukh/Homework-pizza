@@ -1,4 +1,4 @@
-import { Heart, Pizza } from 'lucide-react'
+import { Pizza } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC, ReactNode } from 'react'
@@ -14,15 +14,17 @@ interface Props {
     favoritesCount: number
   }
   favoriteSlot?: ReactNode
+  favoriteCountSlot?: ReactNode
   priority?: boolean
 }
 
 export const ItemCard: FC<Props> = ({
   item,
   favoriteSlot,
+  favoriteCountSlot,
   priority = false,
 }) => {
-  const { id, title, description, imageUrl, favoritesCount } = item
+  const { id, title, description, imageUrl } = item
 
   return (
     <Link
@@ -50,10 +52,7 @@ export const ItemCard: FC<Props> = ({
       <div className="flex flex-col gap-1">
         <div className="flex items-center justify-between gap-2">
           <h3 className="font-semibold leading-tight">{title}</h3>
-          <span className="flex shrink-0 items-center gap-1 text-xs text-muted-foreground">
-            <Heart className="size-3" />
-            {favoritesCount}
-          </span>
+          {favoriteCountSlot}
         </div>
         <p className="line-clamp-2 text-sm text-muted-foreground">
           {description ?? '—'}

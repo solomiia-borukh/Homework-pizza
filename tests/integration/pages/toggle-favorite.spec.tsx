@@ -352,19 +352,10 @@ describe('Integration | Component | ToggleFavoriteButton', () => {
       })
     })
 
-    test('it marks the items query as stale after a successful toggle', async () => {
+    test('it does not re-fetch items after toggle (count is managed optimistically)', async () => {
       const user = userEvent.setup()
 
-      const { client } = renderButton()
-
-      const itemsQueryKey = ['items', { term: '', sort: 'newest', page: 1 }]
-
-      client.setQueryData(itemsQueryKey, {
-        items: [],
-        total: 0,
-        page: 1,
-        totalPages: 0,
-      })
+      renderButton()
 
       await waitFor(() => {
         expect(
@@ -372,6 +363,7 @@ describe('Integration | Component | ToggleFavoriteButton', () => {
         ).toBeInTheDocument()
       })
 
+      fetchMock.mockClear()
       fetchMock.mockImplementation((url: string, init?: RequestInit) => {
         if (url.includes('/api/favorites') && init?.method === 'POST') {
           return Promise.resolve(makeJsonResponse({ ok: true }))
@@ -387,12 +379,16 @@ describe('Integration | Component | ToggleFavoriteButton', () => {
       await user.click(screen.getByRole('button', { name: 'Add to favorites' }))
 
       await waitFor(() => {
-        const cachedQuery = client
-          .getQueryCache()
-          .find({ queryKey: itemsQueryKey })
-
-        expect(cachedQuery?.state.isInvalidated).toBe(true)
+        expect(
+          screen.getByRole('button', { name: 'Remove from favorites' }),
+        ).toBeInTheDocument()
       })
+
+      const itemsCalls = fetchMock.mock.calls.filter((args) =>
+        (args[0] as string).includes('/api/items'),
+      )
+
+      expect(itemsCalls).toHaveLength(0)
     })
 
     test('it does not re-fetch favorites when re-rendered without interaction', async () => {

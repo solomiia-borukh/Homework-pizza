@@ -42,7 +42,6 @@ export const useToggleFavoriteMutation = () => {
 
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['favorites'] })
-      queryClient.invalidateQueries({ queryKey: ['items'] })
     },
   })
 }

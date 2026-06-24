@@ -5,7 +5,10 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import type { FC } from 'react'
 
 import { ItemCard, itemsQueryOptions } from '@/app/entities/item'
-import { ToggleFavoriteButton } from '@/app/features/toggle-favorite'
+import {
+  FavoriteCount,
+  ToggleFavoriteButton,
+} from '@/app/features/toggle-favorite'
 import { Pagination } from '@/app/shared/ui/pagination'
 
 export const ItemsList: FC = () => {
@@ -43,21 +46,27 @@ export const ItemsList: FC = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <Pagination
-        currentPage={page}
-        totalPages={data.totalPages}
-        onPageChange={setPage}
-      />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {data.items.map((item, index) => (
           <ItemCard
             key={item.id}
             item={item}
             favoriteSlot={<ToggleFavoriteButton itemId={item.id} />}
+            favoriteCountSlot={
+              <FavoriteCount
+                itemId={item.id}
+                initialCount={item.favoritesCount}
+              />
+            }
             priority={index === 0}
           />
         ))}
       </div>
+      <Pagination
+        currentPage={page}
+        totalPages={data.totalPages}
+        onPageChange={setPage}
+      />
     </div>
   )
 }
