@@ -3,8 +3,8 @@ import 'server-only'
 import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 
-import * as authSchema from './auth-schema'
-import * as appSchema from './schema'
+import * as authSchema from '@/app/entities/schemas'
+import * as appSchema from '@/app/entities/schemas'
 
 const connectionString = process.env.DATABASE_URL
 

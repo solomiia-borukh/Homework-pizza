@@ -1,11 +1,10 @@
 import type { NextPage } from 'next'
-import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import { auth } from '@/pkg/auth'
+import { authServer } from '@/pkg/auth/server'
 
 const Page: NextPage = async () => {
-  const session = await auth.api.getSession({ headers: await headers() })
+  const session = await authServer.getSession()
 
   redirect(session ? '/items' : '/login')
 }

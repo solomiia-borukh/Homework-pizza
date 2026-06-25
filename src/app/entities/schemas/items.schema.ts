@@ -1,6 +1,6 @@
 import { pgTable, text, timestamp, unique, uuid } from 'drizzle-orm/pg-core'
 
-import { user } from './auth-schema'
+import { user } from './auth.schema'
 
 export const items = pgTable('items', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -11,6 +11,9 @@ export const items = pgTable('items', {
     .defaultNow()
     .notNull(),
 })
+
+export type Item = typeof items.$inferSelect
+export type NewItem = typeof items.$inferInsert
 
 export const favorites = pgTable(
   'favorites',
@@ -29,7 +32,5 @@ export const favorites = pgTable(
   (table) => [unique().on(table.userId, table.itemId)],
 )
 
-export type Item = typeof items.$inferSelect
-export type NewItem = typeof items.$inferInsert
 export type Favorite = typeof favorites.$inferSelect
 export type NewFavorite = typeof favorites.$inferInsert

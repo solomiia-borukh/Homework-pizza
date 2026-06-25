@@ -1,10 +1,10 @@
+import { buttonVariants } from '@shared/ui/button'
+import { cn } from '@shared/utils/cn'
 import Link from 'next/link'
 import type { FC, PropsWithChildren } from 'react'
 import { Suspense } from 'react'
 
 import { ItemSearchComponent } from '@/app/features/item-search'
-import { buttonVariants } from '@/app/shared/ui/button'
-import { cn } from '@/pkg/utils'
 
 const Layout: FC<PropsWithChildren> = (props) => {
   const { children } = props

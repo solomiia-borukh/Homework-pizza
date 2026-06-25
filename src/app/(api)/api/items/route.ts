@@ -1,7 +1,8 @@
 import { asc, count, desc, eq, ilike } from 'drizzle-orm'
 import { type NextRequest, NextResponse } from 'next/server'
 
-import { db, favorites, items } from '@/pkg/db'
+import { favorites, items } from '@/app/entities/schemas'
+import { db } from '@/config/db'
 
 const LIMIT = 6
 

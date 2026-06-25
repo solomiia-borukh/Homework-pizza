@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { useRouter } from 'next/navigation'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { LoginForm } from '@/app/features/login-form'
+import { LoginFormComponent } from '@/app/features/login-form'
 
 vi.mock('next/navigation')
 vi.mock('@/pkg/auth/auth-client')
@@ -20,7 +20,7 @@ const renderForm = () => {
 
   return render(
     <QueryClientProvider client={client}>
-      <LoginForm />
+      <LoginFormComponent />
     </QueryClientProvider>,
   )
 }

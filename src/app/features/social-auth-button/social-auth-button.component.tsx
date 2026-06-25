@@ -1,9 +1,9 @@
 'use client'
 
+import { Button } from '@shared/ui/button'
 import { useState } from 'react'
 
-import { Button } from '@/app/shared/ui/button'
-import { signIn } from '@/pkg/auth/auth-client'
+import { signIn } from '@/pkg/auth/client/auth.client'
 
 const GoogleIcon = () => (
   <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">

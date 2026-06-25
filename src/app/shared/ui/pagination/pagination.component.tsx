@@ -1,7 +1,6 @@
+import { Button } from '@shared/ui/button'
+import { cn } from '@shared/utils/cn'
 import type { FC } from 'react'
-
-import { Button } from '@/app/shared/ui/button'
-import { cn } from '@/pkg/utils'
 
 interface IProps {
   currentPage: number

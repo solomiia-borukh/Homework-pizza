@@ -1,3 +1,5 @@
+import { http } from '@/pkg/rest-api/fetcher'
+
 export type IItemsParams = {
   term?: string
   page?: number
@@ -18,20 +20,6 @@ export type IItemsResponse = {
   totalPages: number
 }
 
-export const fetchItems = async (
-  params: IItemsParams,
-): Promise<IItemsResponse> => {
-  const query = new URLSearchParams()
-
-  if (params.term) query.set('term', params.term)
-  if (params.page) query.set('page', String(params.page))
-  if (params.sort) query.set('sort', params.sort)
-
-  const response = await fetch(`/api/items?${query.toString()}`)
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch items')
-  }
-
-  return response.json()
+export const fetchItems = async (params: IItemsParams) => {
+  return http.get<IItemsResponse>('/api/items', params)
 }

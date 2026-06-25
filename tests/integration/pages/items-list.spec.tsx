@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { type ReactNode } from 'react'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { ItemsList } from '@/app/widgets/items-list'
+import { ItemsListComponent } from '@/app/widgets/items-list'
 
 const fetchMock = vi.hoisted(() => {
   const mock = vi.fn()
@@ -72,7 +72,7 @@ const renderList = () => {
     <QueryClientProvider client={client}>{children}</QueryClientProvider>
   )
 
-  return { ...render(<ItemsList />, { wrapper: Wrapper }), client }
+  return { ...render(<ItemsListComponent />, { wrapper: Wrapper }), client }
 }
 
 beforeEach(() => {
@@ -188,7 +188,7 @@ describe('Integration | Component | ItemsList', () => {
 
       fetchMock.mockClear()
 
-      rerender(<ItemsList />)
+      rerender(<ItemsListComponent />)
 
       expect(fetchMock).not.toHaveBeenCalled()
     })
@@ -209,7 +209,7 @@ describe('Integration | Component | ItemsList', () => {
         () => searchParamsStore as ReturnType<typeof useSearchParams>,
       )
 
-      rerender(<ItemsList />)
+      rerender(<ItemsListComponent />)
 
       await waitFor(() => {
         expect(fetchMock).toHaveBeenCalledWith(
@@ -262,7 +262,7 @@ describe('Integration | Component | ItemsList', () => {
         () => searchParamsStore as ReturnType<typeof useSearchParams>,
       )
 
-      rerender(<ItemsList />)
+      rerender(<ItemsListComponent />)
 
       await waitFor(() => {
         expect(

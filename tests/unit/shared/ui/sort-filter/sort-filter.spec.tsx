@@ -1,8 +1,7 @@
+import { SortFilterComponent } from '@shared/ui/sort-filter'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, test, vi } from 'vitest'
-
-import { SortFilter } from '@/app/shared/ui/sort-filter'
 
 const OPTIONS = [
   { value: 'newest', label: 'Newest' },
@@ -12,7 +11,13 @@ const OPTIONS = [
 
 describe('Unit | Component | SortFilter', () => {
   test('it renders the sort button', () => {
-    render(<SortFilter options={OPTIONS} value="newest" onChange={vi.fn()} />)
+    render(
+      <SortFilterComponent
+        options={OPTIONS}
+        value="newest"
+        onChange={vi.fn()}
+      />,
+    )
 
     expect(
       screen.getByRole('button', { name: 'Sort options' }),
@@ -22,7 +27,13 @@ describe('Unit | Component | SortFilter', () => {
   test('it shows all options when the button is clicked', async () => {
     const user = userEvent.setup()
 
-    render(<SortFilter options={OPTIONS} value="newest" onChange={vi.fn()} />)
+    render(
+      <SortFilterComponent
+        options={OPTIONS}
+        value="newest"
+        onChange={vi.fn()}
+      />,
+    )
 
     await user.click(screen.getByRole('button', { name: 'Sort options' }))
 
@@ -37,7 +48,13 @@ describe('Unit | Component | SortFilter', () => {
     const user = userEvent.setup()
     const onChange = vi.fn()
 
-    render(<SortFilter options={OPTIONS} value="newest" onChange={onChange} />)
+    render(
+      <SortFilterComponent
+        options={OPTIONS}
+        value="newest"
+        onChange={onChange}
+      />,
+    )
 
     await user.click(screen.getByRole('button', { name: 'Sort options' }))
 
@@ -53,7 +70,13 @@ describe('Unit | Component | SortFilter', () => {
   test('it closes the menu after an option is selected', async () => {
     const user = userEvent.setup()
 
-    render(<SortFilter options={OPTIONS} value="newest" onChange={vi.fn()} />)
+    render(
+      <SortFilterComponent
+        options={OPTIONS}
+        value="newest"
+        onChange={vi.fn()}
+      />,
+    )
 
     await user.click(screen.getByRole('button', { name: 'Sort options' }))
 
@@ -71,7 +94,9 @@ describe('Unit | Component | SortFilter', () => {
   test('it marks the currently selected option with aria-checked', async () => {
     const user = userEvent.setup()
 
-    render(<SortFilter options={OPTIONS} value="az" onChange={vi.fn()} />)
+    render(
+      <SortFilterComponent options={OPTIONS} value="az" onChange={vi.fn()} />,
+    )
 
     await user.click(screen.getByRole('button', { name: 'Sort options' }))
 

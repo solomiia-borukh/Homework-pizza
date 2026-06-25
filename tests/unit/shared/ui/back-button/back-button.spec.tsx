@@ -1,9 +1,8 @@
+import { BackButtonComponent } from '@shared/ui/back-button'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useRouter } from 'next/navigation'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-
-import { BackButton } from '@/app/shared/ui/back-button'
 
 vi.mock('next/navigation')
 
@@ -18,13 +17,13 @@ beforeEach(() => {
 
 describe('Unit | Component | BackButton', () => {
   test('it renders the default "Back" label', () => {
-    render(<BackButton />)
+    render(<BackButtonComponent />)
 
     expect(screen.getByRole('button', { name: '← Back' })).toBeInTheDocument()
   })
 
   test('it renders a custom label', () => {
-    render(<BackButton label="All pizzas" />)
+    render(<BackButtonComponent label="All pizzas" />)
 
     expect(
       screen.getByRole('button', { name: '← All pizzas' }),
@@ -38,7 +37,7 @@ describe('Unit | Component | BackButton', () => {
       back: mockBack,
     } as unknown as ReturnType<typeof useRouter>)
 
-    render(<BackButton />)
+    render(<BackButtonComponent />)
 
     await user.click(screen.getByRole('button', { name: '← Back' }))
 

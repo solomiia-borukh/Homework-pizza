@@ -1,12 +1,12 @@
 import { and, eq } from 'drizzle-orm'
-import { headers } from 'next/headers'
 import { type NextRequest, NextResponse } from 'next/server'
 
-import { auth } from '@/pkg/auth'
-import { db, favorites } from '@/pkg/db'
+import { favorites } from '@/app/entities/schemas'
+import { db } from '@/config/db'
+import { authServer } from '@/pkg/auth/server'
 
 export const GET = async () => {
-  const session = await auth.api.getSession({ headers: await headers() })
+  const session = await authServer.getSession()
 
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -21,7 +21,7 @@ export const GET = async () => {
 }
 
 export const POST = async (request: NextRequest) => {
-  const session = await auth.api.getSession({ headers: await headers() })
+  const session = await authServer.getSession()
 
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -42,7 +42,7 @@ export const POST = async (request: NextRequest) => {
 }
 
 export const DELETE = async (request: NextRequest) => {
-  const session = await auth.api.getSession({ headers: await headers() })
+  const session = await authServer.getSession()
 
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

@@ -1,13 +1,13 @@
 import { and, asc, count, desc, eq, ilike } from 'drizzle-orm'
 import { alias } from 'drizzle-orm/pg-core'
-import { headers } from 'next/headers'
 import { type NextRequest, NextResponse } from 'next/server'
 
-import { auth } from '@/pkg/auth'
-import { db, favorites, items } from '@/pkg/db'
+import { favorites, items } from '@/app/entities/schemas'
+import { db } from '@/config/db'
+import { authServer } from '@/pkg/auth/server'
 
 export const GET = async (request: NextRequest) => {
-  const session = await auth.api.getSession({ headers: await headers() })
+  const session = await authServer.getSession()
 
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

@@ -1,11 +1,11 @@
 import { config } from 'dotenv'
 
+import { items } from '@/app/entities/schemas'
+
 config({ path: '.env.local' })
 
 import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
-
-import { items } from '../src/pkg/db/schema'
 
 const connectionString = process.env.DATABASE_URL
 

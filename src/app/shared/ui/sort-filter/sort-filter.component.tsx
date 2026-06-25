@@ -1,12 +1,11 @@
 'use client'
 
 import { Menu } from '@base-ui/react/menu'
+import { Button } from '@shared/ui/button'
+import { cn } from '@shared/utils/cn'
 import { ArrowUpDown, Check } from 'lucide-react'
 import type { FC } from 'react'
 import { useState } from 'react'
-
-import { Button } from '@/app/shared/ui/button'
-import { cn } from '@/pkg/utils'
 
 interface IOption {
   value: string
