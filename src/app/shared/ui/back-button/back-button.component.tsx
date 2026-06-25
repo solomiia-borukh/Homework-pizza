@@ -5,11 +5,13 @@ import type { FC } from 'react'
 
 import { buttonVariants } from '@/app/shared/ui/button'
 
-interface Props {
+interface IProps {
   label?: string
 }
 
-export const BackButton: FC<Props> = ({ label = 'Back' }) => {
+export const BackButtonComponent: FC<Readonly<IProps>> = (props) => {
+  const { label = 'Back' } = props
+
   const router = useRouter()
 
   return (

@@ -1,5 +1,1 @@
-import type { z } from 'zod'
-
-import type { loginSchema } from '@/app/shared/validation'
-
-export type LoginValues = z.infer<typeof loginSchema>
+export type { ILoginForm } from '@/app/entities/validation'

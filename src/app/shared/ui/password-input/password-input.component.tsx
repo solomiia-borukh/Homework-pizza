@@ -1,14 +1,17 @@
 'use client'
 
 import { Eye, EyeOff } from 'lucide-react'
+import type { FC } from 'react'
 import { type ComponentProps, useState } from 'react'
 
 import { Input } from '@/app/shared/ui/input'
 import { cn } from '@/pkg/utils'
 
-type PasswordInputProps = Omit<ComponentProps<'input'>, 'type'>
+type TProps = Omit<ComponentProps<'input'>, 'type'>
 
-const PasswordInput = ({ className, ...props }: PasswordInputProps) => {
+export const PasswordInput: FC<TProps> = (props) => {
+  const { className, ...rest } = props
+
   const [isVisible, setIsVisible] = useState(false)
 
   const toggle = () => setIsVisible((previous) => !previous)
@@ -19,7 +22,7 @@ const PasswordInput = ({ className, ...props }: PasswordInputProps) => {
         type={isVisible ? 'text' : 'password'}
         placeholder="••••••••"
         className={cn('pr-9', className)}
-        {...props}
+        {...rest}
       />
       <button
         type="button"
@@ -33,5 +36,3 @@ const PasswordInput = ({ className, ...props }: PasswordInputProps) => {
     </div>
   )
 }
-
-export { PasswordInput }

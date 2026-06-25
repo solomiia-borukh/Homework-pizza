@@ -26,7 +26,7 @@ const GoogleIcon = () => (
   </svg>
 )
 
-export const SocialAuthButton = () => {
+export const SocialAuthButtonComponent = () => {
   const [isPending, setIsPending] = useState(false)
 
   const handleClick = async () => {

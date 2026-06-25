@@ -17,6 +17,8 @@ const strongPassword = z
   .regex(/\d/, 'Password must contain at least one number!')
   .regex(/[!@#$%^&*]/, 'Password must contain at least one special character!')
 
-export const loginSchema = z.object({ email, password })
+export const SLoginForm = z.object({ email, password })
+export const SRegisterForm = z.object({ email, password: strongPassword })
 
-export const registerSchema = z.object({ email, password: strongPassword })
+export type ILoginForm = z.infer<typeof SLoginForm>
+export type IRegisterForm = z.infer<typeof SRegisterForm>

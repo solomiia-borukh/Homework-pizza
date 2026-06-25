@@ -1,1 +1,1 @@
-export { FavoritesList } from './favorites-list.component'
+export { FavoritesListComponent } from './favorites-list.component'

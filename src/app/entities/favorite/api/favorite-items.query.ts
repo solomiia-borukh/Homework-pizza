@@ -1,11 +1,11 @@
 import { queryOptions } from '@tanstack/react-query'
 
 import {
-  type FavoriteItemsParams,
   fetchFavoriteItems,
+  type IFavoriteItemsParams,
 } from './favorite-items.api'
 
-export const favoriteItemsQueryOptions = (params: FavoriteItemsParams = {}) =>
+export const favoriteItemsQueryOptions = (params: IFavoriteItemsParams = {}) =>
   queryOptions({
     queryKey: ['favorites', 'items', params],
     queryFn: () => fetchFavoriteItems(params),

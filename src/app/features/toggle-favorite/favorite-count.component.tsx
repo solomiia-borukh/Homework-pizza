@@ -7,12 +7,14 @@ import { useEffect, useRef, useState } from 'react'
 
 import { favoritesQueryOptions } from '@/app/entities/favorite'
 
-interface Props {
+interface IProps {
   itemId: string
   initialCount: number
 }
 
-export const FavoriteCount: FC<Props> = ({ itemId, initialCount }) => {
+export const FavoriteCountComponent: FC<Readonly<IProps>> = (props) => {
+  const { itemId, initialCount } = props
+
   const [count, setCount] = useState(initialCount)
   const { data: favorites, isSuccess } = useQuery(favoritesQueryOptions())
 

@@ -1,8 +1,8 @@
-export type FavoritesResponse = {
+export type IFavoritesResponse = {
   itemIds: string[]
 }
 
-export const fetchFavorites = async (): Promise<FavoritesResponse> => {
+export const fetchFavorites = async (): Promise<IFavoritesResponse> => {
   const response = await fetch('/api/favorites')
 
   if (!response.ok) {

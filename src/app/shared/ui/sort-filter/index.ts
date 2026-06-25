@@ -1,1 +1,1 @@
-export { SortFilter } from './sort-filter.component'
+export { SortFilterComponent } from './sort-filter.component'

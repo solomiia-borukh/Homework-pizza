@@ -1,201 +1,81 @@
-# Project Overview
-- This project follows Feature-Sliced Design (FSD).
-- The goal is to keep the codebase simple, maintainable, and easy to understand.
-- Favor readability over clever solutions.
+CLAUDE.md
+Tradeoff: these guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
----
+1. Think Before Coding
+Don't assume. Don't hide confusion. Surface tradeoffs.
 
-# Tech Stack
-- Next.js 16
-- TypeScript
-- Drizzle ORM
-- Supabase
-- Better Auth
-- TanStack Query
-- React Hook Form
-- Zod
-- Tailwind CSS
-- shadcn/ui
-- pnpm (package manager)
-- Vitest + React Testing Library (testing)
+Before implementing:
 
----
+State your assumptions explicitly. If uncertain, ask.
+If multiple interpretations exist, present them — don't pick silently.
+If a simpler approach exists, say so. Push back when warranted.
+If something is unclear, stop. Name what's confusing. Ask.
+If a constraint (schema, API, deadline) blocks the simple path, report the tradeoff before patching around it.
+2. Simplicity First
+Minimum code that solves the problem. Nothing speculative.
 
-# Architecture
-- Follow Feature-Sliced Design.
-- Never violate layer boundaries.
+No features beyond what was asked.
+No abstractions for single-use code.
+No "flexibility" or "configurability" that wasn't requested.
+No error handling for impossible scenarios.
+If you write 200 lines and it could be 50, rewrite it.
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
-## Project structure
+3. Surgical Changes
+Touch only what you must. Clean up only your own mess.
 
-```
-src/
-├── app/
-│   ├── (web)/            # Next.js routing (route group): page.tsx, layout.tsx, not-found.tsx, error.tsx, loading.tsx, nested routes
-│   ├── (api)/            # Next.js routing (route group): api/[...route]/route.ts
-│   ├── modules/          # Layer — main business logic
-│   ├── widgets/          # Layer — self-sufficient parts of functionality/interface
-│   ├── features/         # Layer — reusable implementations
-│   ├── entities/         # Layer — business entities (slices: api/, models/)
-│   └── shared/           # Layer — reusable code (segments: ui/, hooks/, store/, interfaces/, assets/, validation/, providers/)
-├── config/               # App config (segments: env/, fonts/, styles/)
-└── pkg/                  # External packages/utilities
-```
+When editing existing code:
 
-## Layer dependency order (a layer imports from below only)
+Don't "improve" adjacent code, comments, or formatting.
+Don't refactor things that aren't broken.
+Match existing style, even if you'd do it differently.
+If you notice unrelated dead code, mention it — don't delete it.
+When your changes create orphans:
 
-```
-(web) / (api)   routing
-modules         highest business layer
-widgets
-features
-entities
-shared          lowest, no business logic
-```
+Remove imports/variables/functions that YOUR changes made unused.
+Don't remove pre-existing dead code unless asked.
+The test: every changed line should trace directly to the user's request.
 
-Boundary rules (NEVER violate):
-- A layer may import ONLY from layers below it (`modules` → `widgets` → `features` → `entities` → `shared`).
-- `entities` must NOT import from `features`, `widgets`, `modules`.
-- `features` must NOT import from `widgets`, `modules`.
-- Slices in the same layer must NOT import each other directly.
-- Cross-slice imports go ONLY through the slice's `index.ts` (public API) — never reach into internal files/segments.
-- `config/` and `pkg/` are leaf utilities; layers may import them, they import nothing upward.
+4. Goal-Driven Execution
+Define success criteria. Loop until verified.
 
----
+Transform tasks into verifiable goals:
 
-# Naming Conventions (FSD-aligned)
+"Add validation" → "Write tests for invalid inputs, then make them pass"
+"Fix the bug" → "Write a test that reproduces it, then make it pass"
+"Refactor X" → "Ensure tests pass before and after"
+For multi-step tasks, state a brief plan:
 
-Naming must be consistent, domain-driven, and aligned with Feature-Sliced Design.
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
-## Files
+5. Verify Before Claiming Done
+Evidence before assertions. Always.
 
-- Pages: `page.tsx`
-- Layouts: `layout.tsx`
-- Components: `component-name.component.tsx`
-- Modules (main business logic; the `modules` layer, distinct from `features`): `module-name.module.ts`
-- Services: `service-name.service.ts`
-- Stores: `store-name.store.ts`
-- Hooks: `hook-name.hook.ts`
-- Models: `model-name.model.ts`
-- APIs: `api-name.api.ts`
-- Queries (TanStack Query): `api-name.query.ts`
-- Mutations (TanStack Query): `api-name.mutation.ts`
-- Constants: `constant-name.constant.ts`
-- Interfaces: `interface-name.interface.ts`
+Before saying "fixed", "passing", "working", "complete":
 
-Rules:
-- Use kebab-case for all files
-- Use lowercase only
-- Avoid abbreviations unless standard (e.g. id, api)
+Run the actual command. Don't infer success from the diff.
+Read the actual output. Don't assume the exit code.
+If you can't run it (missing env, no UI access, sandboxed), say so explicitly instead of claiming success.
+The bar: a future reader should be able to point at concrete tool output you saw.
 
-## Directories
+Pushback ≠ truth. When the user disagrees with your work, investigate before agreeing. Reflexive "you're right, let me fix that" is worse than a calm "let me verify first" — they might be wrong, and capitulation hides bugs in the next layer.
 
-- kebab-case: `user-profile`, `order-history`
-- Singular for UI components: `button`, `card`
-- Plural for collections: `users`, `orders`
 
-## FSD Naming Constraint
+Red Flags — Internal Thoughts That Mean STOP
 
-- Prefer domain-first naming (e.g. `billing`, `profile`, `auth`)
-- Slice names must represent a feature or entity, not implementation detail
+These are pattern-match triggers, not rules. If you catch the thought on the left, the reality on the right applies.
 
----
-
-# Development Workflow
-Every task must follow this workflow:
-
-1. Analyze the task and existing code.
-2. Ask clarifying questions if information is missing or ambiguous.
-3. Create a detailed implementation plan.
-4. Wait for approval.
-5. Implement only after approval.
-6. Explain what was changed and why.
-Never start writing code immediately.
-
----
-
-# Coding Standards
-- Use TypeScript.
-- Never use any.
-- Prefer explicit types.
-- Use arrow functions.
-- Prefer ComponentProps<'element'> over HTMLAttributes.
-
----
-
-# Next.js Rules
-- Prefer Server Components.
-- Use Client Components only when necessary.
-- Prefer Route Handlers over Server Actions unless Server Actions are clearly the better choice.
-- Prefer redirect() and notFound() where appropriate.
-- Avoid unnecessary "use client".
-
----
-
-# TanStack Query Rules
-- Use placeholderData when appropriate.
-- Use invalidateQueries after successful mutations.
-- Prefer optimistic updates when they improve UX.
-- Use hydration whenever server-fetched data is available.
-- Throw errors using throwOnError when appropriate.
-
----
-
-# Better Auth Rules
-- Use Better Auth.
-- Use drizzleAdapter.
-- Do not modify Better Auth tables without explicit permission.
-
----
-
-# Drizzle Rules
-- Use Drizzle for all database access.
-- Do not use raw SQL unless explicitly requested.
-- Keep schema changes inside migrations.
-- Prefer typed queries.
-
----
-
-# UI Rules
-- Use Tailwind CSS.
-- Prefer shadcn/ui components.
-- Add shadcn/ui components by copying their source manually into `src/app/shared/ui/<name>/<name>.component.tsx` (+ `index.ts`) — do NOT use the shadcn CLI (`npx shadcn add`). Match the project style (`base-nova` / `neutral`, per `components.json`) and import `cn` from `@/pkg/utils`.
-- Keep the `shadcn` package in `devDependencies`: the `base-nova` style imports its base CSS preset via `@import "shadcn/tailwind.css"` in `global.css`. It is a build-time style asset, not the CLI workflow — do not remove it.
-- Use Lucide icons.
-- Use cn() for all conditional class names.
-- Avoid inline styles.
-- All clickable elements (buttons, links, icon buttons) must have the `cursor-pointer` Tailwind class.
-- Every page must be responsive using a **mobile-first** approach. Breakpoints: default (mobile), `sm:` 640px, `md:` 768px, `lg:` 1024px. Never write desktop-first overrides.
-
----
-
-# Dependency Management
-If a dependency might improve the implementation:
-- explain why it is needed;
-- explain available alternatives;
-- explain trade-offs;
-- wait for approval before installing anything.
-
----
-
-# Language
-- Write everything in the project in English: code, identifiers, comments, commit messages, documentation, and UI copy.
-
----
-
-# Communication
-- Ask clarifying questions whenever requirements are unclear.
-- Do not guess project requirements.
-- If multiple implementation options exist, explain them and recommend one.
-- When introducing a new API, library, or framework feature, briefly explain why it is being used.
-
----
-
-# Do Not Do
-- Do not refactor unrelated code.
-- Do not change architecture without permission.
-- Do not rename files unless requested.
-- Do not introduce abstractions without a clear reason.
-- Do not optimize code prematurely.
-- Temporary comments added during implementation should be removed before the task is completed.
-
----
+| Thought | Reality |
+|----------|---------|
+| "I’ll just do this one thing first" | You’re skipping plan/scope. Stop and confirm. |
+| "This is too simple to need verification" | Trivial things break prod most often. Run it. |
+| "User pushed back, I’ll just rewrite" | Verify the claim first. Capitulation isn’t humility. |
+| "Let me add a bit of flexibility for later" | YAGNI. Delete it. |
+| "Close enough, let me move on" | “Close enough” is how silent bugs ship. |
+| "I’ll add error handling just in case" | If the case can’t happen, the handler hides real bugs. |
+| "Let me also clean up while I’m here" | Out of scope. Mention it, don’t do it. |
+| "The test is probably fine, no need to run" | The test is never fine until it’s green. |
+| "I know what this code does without reading it" | Read it. Models confabulate confidently. |
+| "I’ll write a quick summary doc / README" | Not asked for. Don’t create files unprompted. |

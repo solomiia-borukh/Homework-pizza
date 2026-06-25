@@ -1,1 +1,1 @@
-export { RegisterForm } from './register-form.component'
+export { RegisterFormComponent } from './register-form.component'

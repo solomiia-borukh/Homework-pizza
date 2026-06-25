@@ -11,11 +11,13 @@ import {
 import { useSession } from '@/pkg/auth/auth-client'
 import { cn } from '@/pkg/utils'
 
-interface Props {
+interface IProps {
   itemId: string
 }
 
-export const ToggleFavoriteButton: FC<Props> = ({ itemId }) => {
+export const ToggleFavoriteButtonComponent: FC<Readonly<IProps>> = (props) => {
+  const { itemId } = props
+
   const { data: session } = useSession()
   const { data: favorites } = useQuery(favoritesQueryOptions())
   const { mutate, isPending } = useToggleFavoriteMutation()

@@ -1,10 +1,10 @@
-export type ItemsParams = {
+export type IItemsParams = {
   term?: string
   page?: number
   sort?: string
 }
 
-export type ItemsResponse = {
+export type IItemsResponse = {
   items: {
     id: string
     title: string
@@ -19,8 +19,8 @@ export type ItemsResponse = {
 }
 
 export const fetchItems = async (
-  params: ItemsParams,
-): Promise<ItemsResponse> => {
+  params: IItemsParams,
+): Promise<IItemsResponse> => {
   const query = new URLSearchParams()
 
   if (params.term) query.set('term', params.term)

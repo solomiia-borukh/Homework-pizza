@@ -8,13 +8,13 @@ import { useState } from 'react'
 import { Button } from '@/app/shared/ui/button'
 import { cn } from '@/pkg/utils'
 
-interface Option {
+interface IOption {
   value: string
   label: string
 }
 
-interface Props {
-  options?: Option[]
+interface IProps {
+  options?: IOption[]
   value: string
   onChange: (value: string) => void
 }
@@ -25,11 +25,9 @@ const defaultOptions = [
   { value: 'za', label: 'Z → A' },
 ]
 
-export const SortFilter: FC<Props> = ({
-  options = defaultOptions,
-  value,
-  onChange,
-}) => {
+export const SortFilterComponent: FC<Readonly<IProps>> = (props) => {
+  const { options = defaultOptions, value, onChange } = props
+
   const [open, setOpen] = useState(false)
 
   return (

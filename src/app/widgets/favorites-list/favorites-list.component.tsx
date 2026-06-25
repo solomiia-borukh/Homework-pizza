@@ -5,14 +5,14 @@ import { useSearchParams } from 'next/navigation'
 import type { FC } from 'react'
 
 import { favoriteItemsQueryOptions } from '@/app/entities/favorite'
-import { ItemCard } from '@/app/entities/item'
+import { ItemCardComponent } from '@/app/entities/item'
 import {
-  FavoriteCount,
-  ToggleFavoriteButton,
+  FavoriteCountComponent,
+  ToggleFavoriteButtonComponent,
 } from '@/app/features/toggle-favorite'
-import { ListFallBack } from '@/app/shared/ui/list-fallback'
+import { ListFallBackComponent } from '@/app/shared/ui/list-fallback'
 
-export const FavoritesList: FC = () => {
+export const FavoritesListComponent: FC = () => {
   const searchParams = useSearchParams()
 
   const term = searchParams.get('term') ?? ''
@@ -23,7 +23,7 @@ export const FavoritesList: FC = () => {
   )
 
   if (isPending) {
-    return <ListFallBack />
+    return <ListFallBackComponent />
   }
 
   if (!data || data.items.length === 0) {
@@ -35,12 +35,12 @@ export const FavoritesList: FC = () => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {data.items.map((item, index) => (
-        <ItemCard
+        <ItemCardComponent
           key={item.id}
           item={item}
-          favoriteSlot={<ToggleFavoriteButton itemId={item.id} />}
+          favoriteSlot={<ToggleFavoriteButtonComponent itemId={item.id} />}
           favoriteCountSlot={
-            <FavoriteCount
+            <FavoriteCountComponent
               itemId={item.id}
               initialCount={item.favoritesCount}
             />

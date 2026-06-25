@@ -7,6 +7,7 @@ import type { FC } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { toast } from 'sonner'
 
+import { SRegisterForm } from '@/app/entities/validation'
 import { Button } from '@/app/shared/ui/button'
 import {
   Form,
@@ -18,21 +19,20 @@ import {
 } from '@/app/shared/ui/form'
 import { Input } from '@/app/shared/ui/input'
 import { PasswordInput } from '@/app/shared/ui/password-input'
-import { registerSchema } from '@/app/shared/validation'
 import { signUp } from '@/pkg/auth/auth-client'
 
-import type { RegisterValues } from './register-form.interface'
+import type { IRegisterForm } from './register-form.interface'
 
-export const RegisterForm: FC = () => {
+export const RegisterFormComponent: FC = () => {
   const router = useRouter()
-  const form = useForm<RegisterValues>({
-    resolver: zodResolver(registerSchema),
+  const form = useForm<IRegisterForm>({
+    resolver: zodResolver(SRegisterForm),
     defaultValues: { email: '', password: '' },
     mode: 'onBlur',
   })
 
   const { mutate, isPending } = useMutation({
-    mutationFn: async ({ email, password }: RegisterValues) => {
+    mutationFn: async ({ email, password }: IRegisterForm) => {
       const { error } = await signUp.email({
         email,
         password,
@@ -57,7 +57,7 @@ export const RegisterForm: FC = () => {
   const { handleSubmit, control } = form
 
   const values = useWatch({ control })
-  const isFormValid = registerSchema.safeParse(values).success
+  const isFormValid = SRegisterForm.safeParse(values).success
 
   return (
     <Form {...form}>

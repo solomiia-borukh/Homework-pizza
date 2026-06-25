@@ -1,1 +1,1 @@
-export { ListFallBack } from './list-fallback.component'
+export { ListFallBackComponent } from './list-fallback.component'
