@@ -1,9 +1,9 @@
-import type { FC } from 'react'
+import type { NextPage } from 'next'
 
-import { FavoritesList } from '@/app/widgets/favorites-list'
+import { FavoritesListComponent } from '@/app/widgets/favorites-list'
 
-const FavoritesPage: FC = () => {
-  return <FavoritesList />
+const Page: NextPage = () => {
+  return <FavoritesListComponent />
 }
 
-export default FavoritesPage
+export default Page

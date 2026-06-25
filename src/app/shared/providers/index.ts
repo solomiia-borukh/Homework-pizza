@@ -1,1 +1,1 @@
-export { QueryProvider } from './query-provider.component'
+export { QueryProviderComponent } from './query-provider.component'

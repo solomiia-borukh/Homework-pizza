@@ -1,22 +1,23 @@
 import { count, eq } from 'drizzle-orm'
 import { Pizza } from 'lucide-react'
+import type { NextPage } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import type { FC } from 'react'
 import { Suspense } from 'react'
 
 import {
-  FavoriteCount,
-  ToggleFavoriteButton,
+  FavoriteCountComponent,
+  ToggleFavoriteButtonComponent,
 } from '@/app/features/toggle-favorite'
-import { BackButton } from '@/app/shared/ui/back-button'
+import { BackButtonComponent } from '@/app/shared/ui/back-button'
 import { db, favorites, items } from '@/pkg/db'
 
-interface Props {
+interface IProps {
   params: Promise<{ id: string }>
 }
 
-const Page: FC<Props> = async ({ params }) => {
+const Page: NextPage<IProps> = async (props) => {
+  const { params } = props
   const { id } = await params
 
   const [item] = await db
@@ -36,7 +37,7 @@ const Page: FC<Props> = async ({ params }) => {
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 md:px-8">
-      <BackButton />
+      <BackButtonComponent />
       <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-4">
         <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-lg bg-muted sm:h-80">
           {item.imageUrl ? (
@@ -52,7 +53,7 @@ const Page: FC<Props> = async ({ params }) => {
             <Pizza className="size-20 text-muted-foreground" />
           )}
           <Suspense>
-            <ToggleFavoriteButton itemId={item.id} />
+            <ToggleFavoriteButtonComponent itemId={item.id} />
           </Suspense>
         </div>
         <div className="flex flex-col gap-3">
@@ -61,7 +62,7 @@ const Page: FC<Props> = async ({ params }) => {
               {item.title}
             </h1>
             <Suspense>
-              <FavoriteCount
+              <FavoriteCountComponent
                 itemId={item.id}
                 initialCount={item.favoritesCount}
               />

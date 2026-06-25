@@ -1,15 +1,15 @@
-import type { ItemsResponse } from '@/app/entities/item'
+import type { IItemsResponse } from '@/app/entities/item'
 
-export type FavoriteItemsParams = {
+export type IFavoriteItemsParams = {
   term?: string
   sort?: string
 }
 
-export type FavoriteItemsResponse = Pick<ItemsResponse, 'items'>
+export type IFavoriteItemsResponse = Pick<IItemsResponse, 'items'>
 
 export const fetchFavoriteItems = async (
-  params: FavoriteItemsParams = {},
-): Promise<FavoriteItemsResponse> => {
+  params: IFavoriteItemsParams = {},
+): Promise<IFavoriteItemsResponse> => {
   const query = new URLSearchParams()
 
   if (params.term) query.set('term', params.term)

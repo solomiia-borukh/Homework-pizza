@@ -4,15 +4,15 @@ import { useQuery } from '@tanstack/react-query'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { FC } from 'react'
 
-import { ItemCard, itemsQueryOptions } from '@/app/entities/item'
+import { ItemCardComponent, itemsQueryOptions } from '@/app/entities/item'
 import {
-  FavoriteCount,
-  ToggleFavoriteButton,
+  FavoriteCountComponent,
+  ToggleFavoriteButtonComponent,
 } from '@/app/features/toggle-favorite'
-import { ListFallBack } from '@/app/shared/ui/list-fallback'
-import { Pagination } from '@/app/shared/ui/pagination'
+import { ListFallBackComponent } from '@/app/shared/ui/list-fallback'
+import { PaginationComponent } from '@/app/shared/ui/pagination'
 
-export const ItemsList: FC = () => {
+export const ItemsListComponent: FC = () => {
   const searchParams = useSearchParams()
   const router = useRouter()
 
@@ -30,7 +30,7 @@ export const ItemsList: FC = () => {
   }
 
   if (isPending) {
-    return <ListFallBack />
+    return <ListFallBackComponent />
   }
 
   if (!data || data.items.length === 0) {
@@ -43,12 +43,12 @@ export const ItemsList: FC = () => {
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {data.items.map((item, index) => (
-          <ItemCard
+          <ItemCardComponent
             key={item.id}
             item={item}
-            favoriteSlot={<ToggleFavoriteButton itemId={item.id} />}
+            favoriteSlot={<ToggleFavoriteButtonComponent itemId={item.id} />}
             favoriteCountSlot={
-              <FavoriteCount
+              <FavoriteCountComponent
                 itemId={item.id}
                 initialCount={item.favoritesCount}
               />
@@ -57,7 +57,7 @@ export const ItemsList: FC = () => {
           />
         ))}
       </div>
-      <Pagination
+      <PaginationComponent
         currentPage={page}
         totalPages={data.totalPages}
         onPageChange={setPage}

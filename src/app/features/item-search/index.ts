@@ -1,1 +1,1 @@
-export { ItemSearch } from './item-search.component'
+export { ItemSearchComponent } from './item-search.component'

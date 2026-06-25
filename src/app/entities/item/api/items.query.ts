@@ -1,8 +1,8 @@
 import { queryOptions } from '@tanstack/react-query'
 
-import { fetchItems, type ItemsParams } from './items.api'
+import { fetchItems, type IItemsParams } from './items.api'
 
-export const itemsQueryOptions = (params: ItemsParams) =>
+export const itemsQueryOptions = (params: IItemsParams) =>
   queryOptions({
     queryKey: ['items', params],
     queryFn: () => fetchItems(params),

@@ -5,7 +5,7 @@ import type { FC, ReactNode } from 'react'
 
 import { cn } from '@/pkg/utils'
 
-interface Props {
+interface IProps {
   item: {
     id: string
     title: string
@@ -18,12 +18,8 @@ interface Props {
   priority?: boolean
 }
 
-export const ItemCard: FC<Props> = ({
-  item,
-  favoriteSlot,
-  favoriteCountSlot,
-  priority = false,
-}) => {
+export const ItemCardComponent: FC<Readonly<IProps>> = (props) => {
+  const { item, favoriteSlot, favoriteCountSlot, priority = false } = props
   const { id, title, description, imageUrl } = item
 
   return (

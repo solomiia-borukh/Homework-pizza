@@ -1,10 +1,10 @@
+import type { NextPage } from 'next'
 import Link from 'next/link'
-import type { FC } from 'react'
 
-import { RegisterForm } from '@/app/features/register-form'
-import { SocialAuthButton } from '@/app/features/social-auth-button'
+import { RegisterFormComponent } from '@/app/features/register-form'
+import { SocialAuthButtonComponent } from '@/app/features/social-auth-button'
 
-const RegisterPage: FC = () => {
+const Page: NextPage = () => {
   return (
     <main className="mx-auto flex min-h-svh w-full max-w-sm flex-col justify-center gap-4 p-4 sm:gap-6 sm:p-6 md:p-8 lg:p-10">
       <div className="grid gap-2 text-center">
@@ -14,7 +14,7 @@ const RegisterPage: FC = () => {
         </p>
       </div>
       <div className="flex flex-col gap-2">
-        <RegisterForm />
+        <RegisterFormComponent />
         <div className="relative text-center text-sm">
           <div className="absolute inset-0 flex items-center">
             <div className="border-border w-full border-t" />
@@ -23,7 +23,7 @@ const RegisterPage: FC = () => {
             or
           </span>
         </div>
-        <SocialAuthButton />
+        <SocialAuthButtonComponent />
       </div>
       <p className="text-muted-foreground text-center text-sm">
         Already have an account?{' '}
@@ -35,4 +35,4 @@ const RegisterPage: FC = () => {
   )
 }
 
-export default RegisterPage
+export default Page

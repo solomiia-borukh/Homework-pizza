@@ -6,30 +6,30 @@ import { type FC, useEffect } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 
 import { Input } from '@/app/shared/ui/input'
-import { SortFilter } from '@/app/shared/ui/sort-filter'
+import { SortFilterComponent } from '@/app/shared/ui/sort-filter'
 import { cn } from '@/pkg/utils'
 
-type SearchValues = {
+interface ISearchValues {
   term: string
   sort: 'newest' | 'az' | 'za'
 }
 
-const validSorts: SearchValues['sort'][] = ['newest', 'az', 'za']
+const validSorts: ISearchValues['sort'][] = ['newest', 'az', 'za']
 
-const toValidSort = (value: string | null): SearchValues['sort'] =>
-  validSorts.includes(value as SearchValues['sort'])
-    ? (value as SearchValues['sort'])
+const toValidSort = (value: string | null): ISearchValues['sort'] =>
+  validSorts.includes(value as ISearchValues['sort'])
+    ? (value as ISearchValues['sort'])
     : 'newest'
 
-interface Props {
+interface IProps {
   basePath?: string
 }
 
-export const ItemSearch: FC<Props> = ({ basePath = '/items' }) => {
+export const ItemSearchComponent: FC<Readonly<IProps>> = ({ basePath = '/items' }) => {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const { register, control, setValue } = useForm<SearchValues>({
+  const { register, control, setValue } = useForm<ISearchValues>({
     defaultValues: {
       term: searchParams.get('term') ?? '',
       sort: toValidSort(searchParams.get('sort')),
@@ -71,9 +71,9 @@ export const ItemSearch: FC<Props> = ({ basePath = '/items' }) => {
           </button>
         )}
       </div>
-      <SortFilter
+      <SortFilterComponent
         value={sort ?? 'newest'}
-        onChange={(val) => setValue('sort', val as SearchValues['sort'])}
+        onChange={(val) => setValue('sort', val as ISearchValues['sort'])}
       />
     </div>
   )

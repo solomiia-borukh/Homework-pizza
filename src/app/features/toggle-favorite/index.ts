@@ -1,2 +1,2 @@
-export { FavoriteCount } from './favorite-count.component'
-export { ToggleFavoriteButton } from './toggle-favorite.component'
+export { FavoriteCountComponent } from './favorite-count.component'
+export { ToggleFavoriteButtonComponent } from './toggle-favorite.component'

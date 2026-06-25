@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import {
   addFavorite,
-  type FavoritesResponse,
+  type IFavoritesResponse,
   removeFavorite,
 } from './favorites.api'
 
@@ -21,11 +21,11 @@ export const useToggleFavoriteMutation = () => {
     onMutate: async ({ itemId, isFavorite }) => {
       await queryClient.cancelQueries({ queryKey: ['favorites'] })
 
-      const previous = queryClient.getQueryData<FavoritesResponse>([
+      const previous = queryClient.getQueryData<IFavoritesResponse>([
         'favorites',
       ])
 
-      queryClient.setQueryData<FavoritesResponse>(['favorites'], (old) => ({
+      queryClient.setQueryData<IFavoritesResponse>(['favorites'], (old) => ({
         itemIds: isFavorite
           ? (old?.itemIds ?? []).filter((id) => id !== itemId)
           : [...(old?.itemIds ?? []), itemId],

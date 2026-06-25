@@ -3,17 +3,15 @@ import type { FC } from 'react'
 import { Button } from '@/app/shared/ui/button'
 import { cn } from '@/pkg/utils'
 
-interface Props {
+interface IProps {
   currentPage: number
   totalPages: number
   onPageChange: (page: number) => void
 }
 
-export const Pagination: FC<Props> = ({
-  currentPage,
-  totalPages,
-  onPageChange,
-}) => {
+export const PaginationComponent: FC<Readonly<IProps>> = (props) => {
+  const { currentPage, totalPages, onPageChange } = props
+
   return (
     <div className="flex items-center justify-center gap-1">
       <Button

@@ -1,1 +1,1 @@
-export { BackButton } from './back-button.component'
+export { BackButtonComponent } from './back-button.component'

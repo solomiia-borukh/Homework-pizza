@@ -3,17 +3,19 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query'
+import type { NextPage } from 'next'
 import { type SearchParams } from 'next/dist/server/request/search-params'
-import type { FC } from 'react'
 
 import { itemsQueryOptions } from '@/app/entities/item'
-import { ItemsList } from '@/app/widgets/items-list'
+import { ItemsListComponent } from '@/app/widgets/items-list'
 
-interface Props {
+interface IProps {
   searchParams: Promise<SearchParams>
 }
 
-const ItemsPage: FC<Props> = async ({ searchParams }) => {
+const Page: NextPage<IProps> = async (props) => {
+  const { searchParams } = props
+
   const params = await searchParams
   const term = String(params.term ?? '')
   const sort = String(params.sort ?? 'newest')
@@ -25,9 +27,9 @@ const ItemsPage: FC<Props> = async ({ searchParams }) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ItemsList />
+      <ItemsListComponent />
     </HydrationBoundary>
   )
 }
 
-export default ItemsPage
+export default Page

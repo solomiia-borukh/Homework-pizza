@@ -2,11 +2,13 @@ import Link from 'next/link'
 import type { FC, PropsWithChildren } from 'react'
 import { Suspense } from 'react'
 
-import { ItemSearch } from '@/app/features/item-search'
+import { ItemSearchComponent } from '@/app/features/item-search'
 import { buttonVariants } from '@/app/shared/ui/button'
 import { cn } from '@/pkg/utils'
 
-const Layout: FC<PropsWithChildren> = ({ children }) => {
+const Layout: FC<PropsWithChildren> = (props) => {
+  const { children } = props
+
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 md:px-8">
       <div className="mb-6 flex flex-col gap-4">
@@ -20,7 +22,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
           </Link>
         </div>
         <Suspense>
-          <ItemSearch />
+          <ItemSearchComponent />
         </Suspense>
       </div>
       {children}

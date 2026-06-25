@@ -7,6 +7,7 @@ import type { FC } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { toast } from 'sonner'
 
+import { SLoginForm } from '@/app/entities/validation'
 import { Button } from '@/app/shared/ui/button'
 import {
   Form,
@@ -18,21 +19,20 @@ import {
 } from '@/app/shared/ui/form'
 import { Input } from '@/app/shared/ui/input'
 import { PasswordInput } from '@/app/shared/ui/password-input'
-import { loginSchema } from '@/app/shared/validation'
 import { signIn } from '@/pkg/auth/auth-client'
 
-import type { LoginValues } from './login-form.interface'
+import type { ILoginForm } from './login-form.interface'
 
-export const LoginForm: FC = () => {
+export const LoginFormComponent: FC = () => {
   const router = useRouter()
-  const form = useForm<LoginValues>({
-    resolver: zodResolver(loginSchema),
+  const form = useForm<ILoginForm>({
+    resolver: zodResolver(SLoginForm),
     defaultValues: { email: '', password: '' },
     mode: 'onBlur',
   })
 
   const { isPending, mutate } = useMutation({
-    mutationFn: async ({ email, password }: LoginValues) => {
+    mutationFn: async ({ email, password }: ILoginForm) => {
       const { error } = await signIn.email({
         email,
         password,
@@ -54,7 +54,7 @@ export const LoginForm: FC = () => {
   const { handleSubmit, control } = form
 
   const values = useWatch({ control })
-  const isFormValid = loginSchema.safeParse(values).success
+  const isFormValid = SLoginForm.safeParse(values).success
 
   return (
     <Form {...form}>
