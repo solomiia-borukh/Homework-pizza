@@ -25,7 +25,9 @@ interface IProps {
   basePath?: string
 }
 
-export const ItemSearchComponent: FC<Readonly<IProps>> = ({ basePath = '/items' }) => {
+export const ItemSearchComponent: FC<Readonly<IProps>> = (props) => {
+  const { basePath = '/items' } = props
+
   const router = useRouter()
   const searchParams = useSearchParams()
 
