@@ -2,11 +2,12 @@
 
 import { Input } from '@shared/components/input'
 import { SortFilterComponent } from '@shared/components/sort-filter'
-import { cn } from '@shared/utils/cn'
 import { X } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { type FC, useEffect } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
+
+import { cn } from '@/pkg/theme/lib/utils'
 
 interface ISearchValues {
   term: string

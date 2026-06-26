@@ -2,10 +2,11 @@
 
 import { Menu } from '@base-ui/react/menu'
 import { Button } from '@shared/components/button'
-import { cn } from '@shared/utils/cn'
 import { ArrowUpDown, Check } from 'lucide-react'
 import type { FC } from 'react'
 import { useState } from 'react'
+
+import { cn } from '@/pkg/theme/lib/utils'
 
 interface IOption {
   value: string
