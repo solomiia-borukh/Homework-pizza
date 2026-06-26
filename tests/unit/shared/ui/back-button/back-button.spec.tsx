@@ -1,4 +1,4 @@
-import { BackButtonComponent } from '@shared/ui/back-button'
+import { BackButtonComponent } from '@shared/components/back-button'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useRouter } from 'next/navigation'

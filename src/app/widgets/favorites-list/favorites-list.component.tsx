@@ -10,7 +10,7 @@ import {
   FavoriteCountComponent,
   ToggleFavoriteButtonComponent,
 } from '@/app/features/toggle-favorite'
-import { ListFallBackComponent } from '@/app/shared/ui/list-fallback'
+import { ListFallBackComponent } from '@/app/shared/components/list-fallback'
 
 export const FavoritesListComponent: FC = () => {
   const searchParams = useSearchParams()

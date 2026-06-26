@@ -1,4 +1,4 @@
-import { Button } from '@shared/ui/button'
+import { Button } from '@shared/components/button'
 import { cn } from '@shared/utils/cn'
 import type { FC } from 'react'
 

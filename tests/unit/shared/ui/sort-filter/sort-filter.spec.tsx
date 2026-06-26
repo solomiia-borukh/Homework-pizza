@@ -1,4 +1,4 @@
-import { SortFilterComponent } from '@shared/ui/sort-filter'
+import { SortFilterComponent } from '@shared/components/sort-filter'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, test, vi } from 'vitest'

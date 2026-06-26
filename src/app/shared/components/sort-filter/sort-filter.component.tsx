@@ -1,7 +1,7 @@
 'use client'
 
 import { Menu } from '@base-ui/react/menu'
-import { Button } from '@shared/ui/button'
+import { Button } from '@shared/components/button'
 import { cn } from '@shared/utils/cn'
 import { ArrowUpDown, Check } from 'lucide-react'
 import type { FC } from 'react'

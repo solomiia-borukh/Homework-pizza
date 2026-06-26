@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import type { FC } from 'react'
 
-import { buttonVariants } from '@/app/shared/ui/button'
+import { buttonVariants } from '@/app/shared/components/button'
 
 interface IProps {
   label?: string

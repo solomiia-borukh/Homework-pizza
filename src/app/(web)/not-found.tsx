@@ -1,4 +1,4 @@
-import { buttonVariants } from '@shared/ui/button'
+import { buttonVariants } from '@shared/components/button'
 import { cn } from '@shared/utils/cn'
 import { Pizza } from 'lucide-react'
 import Link from 'next/link'

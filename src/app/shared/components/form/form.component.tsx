@@ -1,7 +1,7 @@
 'use client'
 
 import { Slot } from '@radix-ui/react-slot'
-import { Label } from '@shared/ui/label'
+import { Label } from '@shared/components/label'
 import { cn } from '@shared/utils/cn'
 import type { ComponentProps } from 'react'
 import { createContext, useContext, useId } from 'react'

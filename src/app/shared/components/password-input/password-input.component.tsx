@@ -1,6 +1,6 @@
 'use client'
 
-import { Input } from '@shared/ui/input'
+import { Input } from '@shared/components/input'
 import { cn } from '@shared/utils/cn'
 import { Eye, EyeOff } from 'lucide-react'
 import type { FC } from 'react'

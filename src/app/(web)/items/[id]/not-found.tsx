@@ -1,9 +1,8 @@
+import { buttonVariants } from '@shared/components/button'
+import { cn } from '@shared/utils/cn'
 import { Pizza } from 'lucide-react'
 import Link from 'next/link'
 import type { FC } from 'react'
-
-import { buttonVariants } from '@/app/shared/ui/button'
-import { cn } from '@/pkg/utils'
 
 const NotFoundPage: FC = () => {
   return (

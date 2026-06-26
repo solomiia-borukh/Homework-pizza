@@ -1,4 +1,4 @@
-import { buttonVariants } from '@shared/ui/button'
+import { buttonVariants } from '@shared/components/button'
 import { cn } from '@shared/utils/cn'
 import Link from 'next/link'
 import type { FC, PropsWithChildren } from 'react'

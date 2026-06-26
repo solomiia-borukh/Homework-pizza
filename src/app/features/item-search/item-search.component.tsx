@@ -1,7 +1,7 @@
 'use client'
 
-import { Input } from '@shared/ui/input'
-import { SortFilterComponent } from '@shared/ui/sort-filter'
+import { Input } from '@shared/components/input'
+import { SortFilterComponent } from '@shared/components/sort-filter'
 import { cn } from '@shared/utils/cn'
 import { X } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
