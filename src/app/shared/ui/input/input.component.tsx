@@ -1,7 +1,6 @@
 import { Input as InputPrimitive } from '@base-ui/react/input'
+import { cn } from '@shared/utils/cn'
 import type { ComponentProps, FC } from 'react'
-
-import { cn } from '@/pkg/utils'
 
 export const Input: FC<ComponentProps<'input'>> = (props) => {
   const { className, type, ...rest } = props

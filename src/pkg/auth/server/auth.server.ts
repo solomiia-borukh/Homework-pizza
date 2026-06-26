@@ -2,9 +2,15 @@ import 'server-only'
 
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
+import { headers } from 'next/headers'
 
-import { db } from '@/pkg/db'
-import { account, session, user, verification } from '@/pkg/db/auth-schema'
+import {
+  account,
+  session,
+  user,
+  verification,
+} from '@/app/entities/schemas/auth.schema'
+import { db } from '@/config/db'
 
 const secret = process.env.BETTER_AUTH_SECRET
 const googleClientId = process.env.GOOGLE_CLIENT_ID
@@ -42,3 +48,9 @@ export const auth = betterAuth({
   secret,
   baseURL: process.env.BETTER_AUTH_URL,
 })
+
+export const authServer = {
+  getSession: async () => {
+    return await auth.api.getSession({ headers: await headers() })
+  },
+}

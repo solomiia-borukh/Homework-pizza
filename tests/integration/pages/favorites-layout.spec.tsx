@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { ItemSearch } from '@/app/features/item-search'
+import { ItemSearchComponent } from '@/app/features/item-search'
 
 vi.mock('next/navigation')
 
@@ -25,7 +25,7 @@ afterEach(() => {
 const renderSearch = async () => {
   const user = userEvent.setup()
 
-  render(<ItemSearch basePath="/favorites" />)
+  render(<ItemSearchComponent basePath="/favorites" />)
 
   await waitFor(() => expect(mockPush).toHaveBeenCalled())
   mockPush.mockClear()

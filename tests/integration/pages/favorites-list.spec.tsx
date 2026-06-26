@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { type ReactNode } from 'react'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { FavoritesList } from '@/app/widgets/favorites-list'
+import { FavoritesListComponent } from '@/app/widgets/favorites-list'
 
 const fetchMock = vi.hoisted(() => {
   const mock = vi.fn()
@@ -62,7 +62,7 @@ const renderList = () => {
     <QueryClientProvider client={client}>{children}</QueryClientProvider>
   )
 
-  return { ...render(<FavoritesList />, { wrapper: Wrapper }), client }
+  return { ...render(<FavoritesListComponent />, { wrapper: Wrapper }), client }
 }
 
 beforeEach(() => {
@@ -137,7 +137,7 @@ describe('Integration | Component | FavoritesList', () => {
 
       fetchMock.mockClear()
 
-      rerender(<FavoritesList />)
+      rerender(<FavoritesListComponent />)
 
       expect(fetchMock).not.toHaveBeenCalled()
     })
@@ -158,7 +158,7 @@ describe('Integration | Component | FavoritesList', () => {
         () => searchParamsStore as ReturnType<typeof useSearchParams>,
       )
 
-      rerender(<FavoritesList />)
+      rerender(<FavoritesListComponent />)
 
       await waitFor(() => {
         expect(fetchMock).toHaveBeenCalledWith(
@@ -215,7 +215,7 @@ describe('Integration | Component | FavoritesList', () => {
         () => searchParamsStore as ReturnType<typeof useSearchParams>,
       )
 
-      rerender(<FavoritesList />)
+      rerender(<FavoritesListComponent />)
 
       await waitFor(() => {
         expect(

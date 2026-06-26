@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
-import { ItemCard } from '@/app/entities/item'
+import { ItemCardComponent } from '@/app/entities/item'
 
 const item = {
   id: 'pizza-1',
@@ -14,7 +14,7 @@ const item = {
 describe('Unit | Component | ItemCard', () => {
   test('it renders the title, description, favoriteCountSlot and image', () => {
     render(
-      <ItemCard
+      <ItemCardComponent
         item={item}
         favoriteCountSlot={<span aria-label="favorites count">5</span>}
       />,
@@ -35,7 +35,7 @@ describe('Unit | Component | ItemCard', () => {
 
   test('it renders the favoriteSlot in the image area', () => {
     render(
-      <ItemCard
+      <ItemCardComponent
         item={item}
         favoriteSlot={<button aria-label="toggle favorite">♥</button>}
       />,
@@ -47,13 +47,13 @@ describe('Unit | Component | ItemCard', () => {
   })
 
   test('it links to the correct item detail page', () => {
-    render(<ItemCard item={item} />)
+    render(<ItemCardComponent item={item} />)
 
     expect(screen.getByRole('link')).toHaveAttribute('href', '/items/pizza-1')
   })
 
   test('it does not render a pizza image when imageUrl is null', () => {
-    render(<ItemCard item={{ ...item, imageUrl: null }} />)
+    render(<ItemCardComponent item={{ ...item, imageUrl: null }} />)
 
     expect(
       screen.queryByRole('img', { name: 'Margherita' }),

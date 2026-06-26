@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { type ReactNode } from 'react'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { ToggleFavoriteButton } from '@/app/features/toggle-favorite'
+import { ToggleFavoriteButtonComponent } from '@/app/features/toggle-favorite'
 
 const fetchMock = vi.hoisted(() => {
   const mock = vi.fn()
@@ -45,7 +45,9 @@ const renderButton = (itemId = item_id) => {
   )
 
   return {
-    ...render(<ToggleFavoriteButton itemId={itemId} />, { wrapper: Wrapper }),
+    ...render(<ToggleFavoriteButtonComponent itemId={itemId} />, {
+      wrapper: Wrapper,
+    }),
     client,
   }
 }
@@ -412,7 +414,7 @@ describe('Integration | Component | ToggleFavoriteButton', () => {
 
       fetchMock.mockClear()
 
-      rerender(<ToggleFavoriteButton itemId={item_id} />)
+      rerender(<ToggleFavoriteButtonComponent itemId={item_id} />)
 
       expect(fetchMock).not.toHaveBeenCalled()
     })

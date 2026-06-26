@@ -1,3 +1,4 @@
+import { BackButtonComponent } from '@shared/ui/back-button'
 import { count, eq } from 'drizzle-orm'
 import { Pizza } from 'lucide-react'
 import type { NextPage } from 'next'
@@ -5,12 +6,12 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
+import { favorites, items } from '@/app/entities/schemas'
 import {
   FavoriteCountComponent,
   ToggleFavoriteButtonComponent,
 } from '@/app/features/toggle-favorite'
-import { BackButtonComponent } from '@/app/shared/ui/back-button'
-import { db, favorites, items } from '@/pkg/db'
+import { db } from '@/config/db'
 
 interface IProps {
   params: Promise<{ id: string }>

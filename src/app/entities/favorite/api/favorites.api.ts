@@ -1,35 +1,17 @@
+import { http } from '@/pkg/rest-api/fetcher'
+
 export type IFavoritesResponse = {
   itemIds: string[]
 }
 
-export const fetchFavorites = async (): Promise<IFavoritesResponse> => {
-  const response = await fetch('/api/favorites')
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch favorites')
-  }
-
-  return response.json()
+export const fetchFavorites = async () => {
+  return http.get<IFavoritesResponse>('/api/favorites')
 }
 
-export const addFavorite = async (itemId: string): Promise<void> => {
-  const response = await fetch('/api/favorites', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ itemId }),
-  })
-
-  if (!response.ok) {
-    throw new Error('Failed to add favorite')
-  }
+export const addFavorite = async (itemId: string) => {
+  return http.post<void>('/api/favorites', JSON.stringify({ itemId }))
 }
 
-export const removeFavorite = async (itemId: string): Promise<void> => {
-  const response = await fetch(`/api/favorites?itemId=${itemId}`, {
-    method: 'DELETE',
-  })
-
-  if (!response.ok) {
-    throw new Error('Failed to remove favorite')
-  }
+export const removeFavorite = async (itemId: string) => {
+  return http.delete<void>('/api/favorites', { itemId })
 }

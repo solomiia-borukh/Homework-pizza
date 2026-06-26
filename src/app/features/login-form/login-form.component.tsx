@@ -1,14 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
-import type { FC } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
-import { toast } from 'sonner'
-
-import { SLoginForm } from '@/app/entities/validation'
-import { Button } from '@/app/shared/ui/button'
+import { Button } from '@shared/ui/button'
 import {
   Form,
   FormControl,
@@ -16,10 +9,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/app/shared/ui/form'
-import { Input } from '@/app/shared/ui/input'
-import { PasswordInput } from '@/app/shared/ui/password-input'
-import { signIn } from '@/pkg/auth/auth-client'
+} from '@shared/ui/form'
+import { Input } from '@shared/ui/input'
+import { PasswordInput } from '@shared/ui/password-input'
+import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
+import type { FC } from 'react'
+import { useForm, useWatch } from 'react-hook-form'
+import { toast } from 'sonner'
+
+import { SLoginForm } from '@/app/entities/validation'
+import { signIn } from '@/pkg/auth/client/auth.client'
 
 import type { ILoginForm } from './login-form.interface'
 

@@ -1,8 +1,7 @@
 'use client'
 
+import { cn } from '@shared/utils/cn'
 import type { ComponentProps, FC } from 'react'
-
-import { cn } from '@/pkg/utils'
 
 export const Label: FC<ComponentProps<'label'>> = (props) => {
   const { className, ...rest } = props

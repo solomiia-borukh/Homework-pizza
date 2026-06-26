@@ -6,8 +6,8 @@ import { type ReactNode } from 'react'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import {
-  FavoriteCount,
-  ToggleFavoriteButton,
+  FavoriteCountComponent,
+  ToggleFavoriteButtonComponent,
 } from '@/app/features/toggle-favorite'
 
 const fetchMock = vi.hoisted(() => {
@@ -68,8 +68,8 @@ const renderCombined = (initialFavorited = false) => {
   return {
     ...render(
       <div style={{ position: 'relative' }}>
-        <ToggleFavoriteButton itemId={ITEM_ID} />
-        <FavoriteCount itemId={ITEM_ID} initialCount={INITIAL_COUNT} />
+        <ToggleFavoriteButtonComponent itemId={ITEM_ID} />
+        <FavoriteCountComponent itemId={ITEM_ID} initialCount={INITIAL_COUNT} />
       </div>,
       { wrapper: Wrapper },
     ),
@@ -96,7 +96,7 @@ describe('Integration | Component | FavoriteCount', () => {
           })
         }
       >
-        <FavoriteCount itemId={ITEM_ID} initialCount={INITIAL_COUNT} />
+        <FavoriteCountComponent itemId={ITEM_ID} initialCount={INITIAL_COUNT} />
       </QueryClientProvider>,
     )
 
@@ -269,7 +269,10 @@ describe('Integration | Component | FavoriteCount', () => {
 
       const { rerender } = render(
         <QueryClientProvider client={client}>
-          <FavoriteCount itemId={ITEM_ID} initialCount={INITIAL_COUNT} />
+          <FavoriteCountComponent
+            itemId={ITEM_ID}
+            initialCount={INITIAL_COUNT}
+          />
         </QueryClientProvider>,
       )
 
@@ -281,7 +284,10 @@ describe('Integration | Component | FavoriteCount', () => {
 
       rerender(
         <QueryClientProvider client={client}>
-          <FavoriteCount itemId={ITEM_ID} initialCount={INITIAL_COUNT} />
+          <FavoriteCountComponent
+            itemId={ITEM_ID}
+            initialCount={INITIAL_COUNT}
+          />
         </QueryClientProvider>,
       )
 

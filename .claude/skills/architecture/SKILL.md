@@ -183,17 +183,6 @@ The barrel re-exports the hooks/options consumers need; not every internal helpe
 
 **`src/pkg/`** — external-system clients and framework-level utilities. Each subfolder is self-contained with its own `index.ts` and stays liftable as one folder. A project may keep `pkg/` flat (`pkg/<name>/`) or group related integrations under a parent (`pkg/<group>/<name>/` — e.g. `pkg/lib/`, `pkg/integrations/`, `pkg/theme/`).
 
-Concrete sub-packages in use:
-
-| Sub-package | Wraps | Exposes |
-|---|---|---|
-| `auth` | better-auth | `authClient` (client), `authServer.getSession` / `getCacheSession` (server-only) |
-| `locale` | next-intl | `Link`, `redirect`, `usePathname`, `useRouter`, `getPathname`, `getRequestConfig` |
-| `rest-api` | ky + TanStack Query | `restApiFetcher`, `getQueryClient`, `RestApiProvider` |
-| `theme` | next-themes, shadcn/ui, sonner | `ThemeProvider`, `cn`, `toastService`, `ui/*` components |
-
-`theme/index.ts` barrels **only** `ThemeProvider` — `cn` (`lib/utils`), `toastService`, and `ui/*` components are imported via their full `@/pkg/theme/...` paths, not through the barrel.
-
 **`src/proxy.ts`** — Next.js edge middleware lives at the **root of `src/`**, not under `app/`. One file. Composes locale routing, auth gates, session cookies, request-header rewrites. May read from `config/env/` and the relevant `pkg/<auth>/` (and other `pkg/` slots), but should not pull from modules/widgets/features.
 
 > Detailed decision trees and isolation rules at the Layer/Slice/Segment levels (which layer, new slice vs extend, which segment, what each may import) live in `references/structure.md`.
