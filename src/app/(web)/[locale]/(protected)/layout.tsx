@@ -1,15 +1,13 @@
-import '@/config/styles/global.css'
-
 import { type FC, type ReactNode } from 'react'
 
 interface IProps {
   children: ReactNode
 }
 
-const LocaleLayout: FC<Readonly<IProps>> = async (props: IProps) => {
+const ProtectedLayoutComponent: FC<Readonly<IProps>> = async (props) => {
   const { children } = props
 
   return <>{children}</>
 }
 
-export default LocaleLayout
+export default ProtectedLayoutComponent

@@ -2,7 +2,7 @@ import { getSessionCookie } from 'better-auth/cookies'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-const authRoutes = ['/login', '/register']
+const authRoutes = ['/sign-in', '/sign-up']
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -13,12 +13,12 @@ export function proxy(request: NextRequest) {
   }
 
   if (!hasSession && pathname.startsWith('/favorites')) {
-    return NextResponse.redirect(new URL('/login', request.url))
+    return NextResponse.redirect(new URL('/sign-in', request.url))
   }
 
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/favorites', '/favorites/:path*', '/login', '/register'],
+  matcher: ['/favorites', '/favorites/:path*', '/sign-in', '/sign-up'],
 }
