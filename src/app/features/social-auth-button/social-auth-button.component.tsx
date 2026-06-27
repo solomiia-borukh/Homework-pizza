@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@shared/ui/button'
+import { Button } from '@shared/components/button'
 import { useState } from 'react'
 
 import { signIn } from '@/pkg/auth/client/auth.client'

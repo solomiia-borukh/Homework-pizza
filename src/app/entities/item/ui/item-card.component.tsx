@@ -1,8 +1,9 @@
-import { cn } from '@shared/utils/cn'
 import { Pizza } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC, ReactNode } from 'react'
+
+import { cn } from '@/pkg/theme/lib/utils'
 
 interface IProps {
   item: {

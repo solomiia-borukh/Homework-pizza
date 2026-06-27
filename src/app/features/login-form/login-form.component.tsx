@@ -1,7 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '@shared/ui/button'
+import { Button } from '@shared/components/button'
 import {
   Form,
   FormControl,
@@ -9,9 +9,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@shared/ui/form'
-import { Input } from '@shared/ui/input'
-import { PasswordInput } from '@shared/ui/password-input'
+} from '@shared/components/form'
+import { Input } from '@shared/components/input'
+import { PasswordInput } from '@shared/components/password-input'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import type { FC } from 'react'

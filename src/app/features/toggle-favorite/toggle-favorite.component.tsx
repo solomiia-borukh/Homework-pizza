@@ -1,6 +1,5 @@
 'use client'
 
-import { cn } from '@shared/utils/cn'
 import { useQuery } from '@tanstack/react-query'
 import { Heart } from 'lucide-react'
 import type { FC, MouseEvent } from 'react'
@@ -10,6 +9,7 @@ import {
   useToggleFavoriteMutation,
 } from '@/app/entities/favorite'
 import { useSession } from '@/pkg/auth/client/auth.client'
+import { cn } from '@/pkg/theme/lib/utils'
 
 interface IProps {
   itemId: string

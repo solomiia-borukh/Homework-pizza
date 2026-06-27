@@ -1,4 +1,4 @@
-import { BackButtonComponent } from '@shared/ui/back-button'
+import { BackButtonComponent } from '@shared/components/back-button'
 import { count, eq } from 'drizzle-orm'
 import { Pizza } from 'lucide-react'
 import type { NextPage } from 'next'
