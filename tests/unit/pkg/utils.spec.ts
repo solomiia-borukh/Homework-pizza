@@ -1,5 +1,6 @@
-import { cn } from '@shared/utils/cn'
 import { describe, expect, test } from 'vitest'
+
+import { cn } from '@/pkg/theme/lib/utils'
 
 const isPenging = false
 
