@@ -44,6 +44,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       description: description,
       siteName: title,
       type: 'website',
+      url: process.env.NEXT_PUBLIC_CLIENT_WEB_URL,
       images: [
         {
           url: ogImage,
@@ -76,7 +77,7 @@ const LocaleLayout: FC<Readonly<IProps>> = async (props: IProps) => {
           <NextIntlClientProvider>
             <RestApiProvider>{children}</RestApiProvider>
           </NextIntlClientProvider>
-          <Toaster position="top-center" duration={3000} />
+          <Toaster position="top-right" duration={3000} />
         </ThemeProvider>
       </body>
     </html>
