@@ -1,6 +1,6 @@
 import { type FC, type ReactNode } from 'react'
 
-import { cn } from '../../utils/cn'
+import { cn } from '@/pkg/theme/lib/utils'
 
 interface IProps {
   children: ReactNode

@@ -4,6 +4,7 @@ import { type FC } from 'react'
 import { LoginFormComponent } from '@/app/features/login-form'
 import { RegisterFormComponent } from '@/app/features/register-form'
 import { SocialAuthButtonComponent } from '@/app/features/social-auth-button'
+import { Button } from '@/app/shared/components/button'
 import { WrapperComponent } from '@/app/shared/ui/wrapper'
 
 interface IProps {
@@ -16,7 +17,7 @@ const SignComponent: FC<Readonly<IProps>> = (props) => {
   return (
     <WrapperComponent
       type="main"
-      className="flex min-h-screen items-center justify-center"
+      className="mx-auto flex min-h-svh w-full max-w-sm flex-col justify-center gap-1 p-4 sm:gap-6 sm:p-6 md:p-8 lg:p-10"
     >
       <div className="grid gap-2 text-center">
         <h1 className="text-2xl font-semibold">
@@ -45,14 +46,17 @@ const SignComponent: FC<Readonly<IProps>> = (props) => {
         </div>
         <SocialAuthButtonComponent />
       </div>
+
       <p className="text-muted-foreground text-center text-sm">
-        {`${variant === 'sign-in' ? 'Don&apos;t' : 'Already'}have an account?`}{' '}
-        <Link
-          href={variant === 'sign-in' ? '/register' : '/login'}
-          className="underline underline-offset-4"
-        >
-          {variant === 'sign-in' ? 'Sign up' : 'Sign in'}
-        </Link>
+        {`${variant === 'sign-in' ? `Don't ` : 'Already '}have an account?`}{' '}
+        <Button variant="ghost" asChild>
+          <Link
+            href={variant === 'sign-in' ? '/sign-up' : '/sign-in'}
+            className="underline underline-offset-4 cursor-pointer"
+          >
+            {variant === 'sign-in' ? 'Sign up' : 'Sign in'}
+          </Link>
+        </Button>
       </p>
     </WrapperComponent>
   )

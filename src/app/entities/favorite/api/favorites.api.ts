@@ -9,7 +9,7 @@ export const fetchFavorites = async () => {
 }
 
 export const addFavorite = async (itemId: string) => {
-  return http.post<void>('/api/favorites', JSON.stringify({ itemId }))
+  return http.post<void>('/api/favorites', { itemId })
 }
 
 export const removeFavorite = async (itemId: string) => {

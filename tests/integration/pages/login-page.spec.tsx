@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import LoginPage from '@/app/(web)/login/page'
+import { SignComponent } from '@/app/modules/sign'
 
 const fetchMock = vi.hoisted(() => {
   const mock = vi.fn()
@@ -36,7 +36,7 @@ const renderPage = () => {
 
   return render(
     <QueryClientProvider client={client}>
-      <LoginPage />
+      <SignComponent variant="sign-in" />
     </QueryClientProvider>,
   )
 }
