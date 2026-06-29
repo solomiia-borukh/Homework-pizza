@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { FC, PropsWithChildren } from 'react'
 import { Suspense } from 'react'
 
-import { ItemSearchComponent } from '@/app/features/item-search'
+import { ItemSearchComponent } from '@/app/shared/components/item-search'
 import { Button } from '@/pkg/theme/ui/button'
 
 const Layout: FC<Readonly<PropsWithChildren>> = (props) => {

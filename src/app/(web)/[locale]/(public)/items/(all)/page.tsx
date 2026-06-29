@@ -6,8 +6,8 @@ import {
 import type { NextPage } from 'next'
 import { type SearchParams } from 'next/dist/server/request/search-params'
 
-import { itemsQueryOptions } from '@/app/entities/item'
-import { ItemsListComponent } from '@/app/widgets/items-list'
+import { itemsQueryOptions } from '@/app/entities/api/item/items.query'
+import { ItemsListComponent } from '@/app/features/items-list'
 
 interface IProps {
   searchParams: Promise<SearchParams>

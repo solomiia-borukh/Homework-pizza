@@ -6,10 +6,8 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
 import { favorites, items } from '@/app/entities/schemas'
-import {
-  FavoriteCountComponent,
-  ToggleFavoriteButtonComponent,
-} from '@/app/features/toggle-favorite'
+import { FavoriteCountComponent } from '@/app/shared/components/favorite-count'
+import { ToggleFavoriteButtonComponent } from '@/app/shared/components/toggle-favorite'
 import { db } from '@/config/db'
 import { BackButton } from '@/pkg/theme/ui/back-button'
 
