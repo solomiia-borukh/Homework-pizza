@@ -33,16 +33,16 @@ export const FormInputComponent = <T extends FieldValues>({
           >
             {label}
           </label>
-          {variant === 'password' ? (
-            <PasswordInput id={field.name} {...inputProps} {...field} />
-          ) : (
-            <Input id={field.name} {...inputProps} {...field} />
-          )}
-          {fieldState.error && (
-            <p className="text-destructive text-sm">
-              {fieldState.error.message}
+          <div>
+            {variant === 'password' ? (
+              <PasswordInput id={field.name} {...inputProps} {...field} />
+            ) : (
+              <Input id={field.name} {...inputProps} {...field} />
+            )}
+            <p className="text-destructive h-4 overflow-hidden text-xs leading-4">
+              {fieldState.error?.message}
             </p>
-          )}
+          </div>
         </div>
       )}
     />

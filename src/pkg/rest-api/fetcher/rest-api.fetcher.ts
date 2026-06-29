@@ -10,7 +10,9 @@ export const http = {
       })
     }
 
-    const res = await fetch(`${url}?${query.toString()}`)
+    const fullUrl = query.toString() ? `${url}?${query.toString()}` : url
+
+    const res = await fetch(fullUrl)
 
     if (!res.ok) {
       throw new Error('Request failed')

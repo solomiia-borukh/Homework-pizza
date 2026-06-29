@@ -9,12 +9,8 @@ import { cn } from '@/pkg/theme/lib/utils'
 import { Input } from '@/pkg/theme/ui/input'
 import { SortFilter } from '@/pkg/theme/ui/sort-filter'
 
-type TSort = 'newest' | 'az' | 'za'
-
-const validSorts: TSort[] = ['newest', 'az', 'za']
-
-const toValidSort = (value: string | null): TSort =>
-  validSorts.includes(value as TSort) ? (value as TSort) : 'newest'
+import type { TSort } from '../../interfaces'
+import { toValidSort } from '../../utils'
 
 interface IProps {
   basePath?: string
