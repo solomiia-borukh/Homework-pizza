@@ -1,15 +1,9 @@
-import { count, eq } from 'drizzle-orm'
-import { Pizza } from 'lucide-react'
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 import type { NextPage } from 'next'
-import Image from 'next/image'
-import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
 
-import { favorites, items } from '@/app/entities/schemas'
-import { FavoriteCountComponent } from '@/app/shared/components/favorite-count'
-import { ToggleFavoriteButtonComponent } from '@/app/shared/components/toggle-favorite'
-import { db } from '@/config/db'
-import { BackButton } from '@/pkg/theme/ui/back-button'
+import { itemQueryOptions } from '@/app/entities/api/item'
+import { ItemDetailComponent } from '@/app/features/item-detail'
+import { getQueryClient } from '@/pkg/rest-api/servise'
 
 interface IProps {
   params: Promise<{ id: string }>
@@ -19,61 +13,14 @@ const Page: NextPage<IProps> = async (props) => {
   const { params } = props
   const { id } = await params
 
-  const [item] = await db
-    .select({
-      id: items.id,
-      title: items.title,
-      description: items.description,
-      imageUrl: items.imageUrl,
-      favoritesCount: count(favorites.id),
-    })
-    .from(items)
-    .leftJoin(favorites, eq(favorites.itemId, items.id))
-    .where(eq(items.id, id))
-    .groupBy(items.id)
+  const queryClient = getQueryClient()
 
-  if (!item) notFound()
+  await queryClient.prefetchQuery(itemQueryOptions(id))
 
   return (
-    <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 md:px-8">
-      <BackButton className="mb-3" />
-
-      <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-4">
-        <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-lg bg-muted sm:h-80">
-          {item.imageUrl ? (
-            <Image
-              src={item.imageUrl}
-              alt={item.title}
-              fill
-              sizes="(min-width: 672px) 640px, 100vw"
-              className="object-cover"
-              priority
-            />
-          ) : (
-            <Pizza className="size-20 text-muted-foreground" />
-          )}
-          <Suspense>
-            <ToggleFavoriteButtonComponent itemId={item.id} />
-          </Suspense>
-        </div>
-        <div className="flex flex-col gap-3">
-          <div className="flex items-start justify-between gap-4">
-            <h1 className="text-2xl font-semibold leading-tight">
-              {item.title}
-            </h1>
-            <Suspense>
-              <FavoriteCountComponent
-                itemId={item.id}
-                initialCount={item.favoritesCount}
-              />
-            </Suspense>
-          </div>
-          {item.description && (
-            <p className="text-muted-foreground">{item.description}</p>
-          )}
-        </div>
-      </div>
-    </main>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <ItemDetailComponent id={id} />
+    </HydrationBoundary>
   )
 }
 

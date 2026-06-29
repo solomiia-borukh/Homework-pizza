@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { FC } from 'react'
 
-import { itemsQueryOptions } from '@/app/entities/api/item/items.query'
+import { itemsQueryOptions } from '@/app/entities/api/item'
 import { FavoriteCountComponent } from '@/app/shared/components/favorite-count'
 import { ItemCardComponent } from '@/app/shared/components/item-card/item-card.component'
 import { ListFallBackComponent } from '@/app/shared/components/list-fallback'

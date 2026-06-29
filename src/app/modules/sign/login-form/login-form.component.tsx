@@ -1,53 +1,23 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
 import type { FC } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
-import { toast } from 'sonner'
 
+import { useLoginMutation } from '@/app/entities/api/auth'
 import type { ILoginForm } from '@/app/entities/validation'
 import { SLoginForm } from '@/app/entities/validation'
-import { signIn } from '@/pkg/auth/client/auth.client'
+import { FormInputComponent } from '@/app/shared/components/form-input'
 import { Button } from '@/pkg/theme/ui/button'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/pkg/theme/ui/form'
-import { Input } from '@/pkg/theme/ui/input'
-import { PasswordInput } from '@/pkg/theme/ui/password-input'
+import { Form } from '@/pkg/theme/ui/form'
 
 export const LoginFormComponent: FC = () => {
-  const router = useRouter()
+  const { isPending, mutate } = useLoginMutation()
+
   const form = useForm<ILoginForm>({
     resolver: zodResolver(SLoginForm),
     defaultValues: { email: '', password: '' },
     mode: 'onBlur',
-  })
-
-  const { isPending, mutate } = useMutation({
-    mutationFn: async ({ email, password }: ILoginForm) => {
-      const { error } = await signIn.email({
-        email,
-        password,
-      })
-
-      if (error) {
-        throw new Error(error.message ?? 'Sign in failed. Please try again.')
-      }
-    },
-    onSuccess: () => {
-      toast.success('Logined successfully!')
-      router.replace('/items')
-    },
-    onError: (error: Error) => {
-      toast.error(error.message)
-    },
   })
 
   const { handleSubmit, control } = form
@@ -62,36 +32,20 @@ export const LoginFormComponent: FC = () => {
         className="grid gap-1"
         noValidate
       >
-        <FormField
+        <FormInputComponent
           control={control}
           name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input
-                  type="email"
-                  autoComplete="email"
-                  placeholder="you@example.com"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Email"
+          type="email"
+          autoComplete="email"
+          placeholder="you@example.com"
         />
-        <FormField
+        <FormInputComponent
           control={control}
           name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <PasswordInput autoComplete="current-password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Password"
+          variant="password"
+          autoComplete="current-password"
         />
         <Button type="submit" disabled={isPending || !isFormValid}>
           {isPending ? 'Signing in…' : 'Sign in'}

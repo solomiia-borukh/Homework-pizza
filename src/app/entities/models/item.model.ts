@@ -1,3 +1,11 @@
+export type IGetItemResponse = {
+  id: string
+  title: string
+  description: string | null
+  imageUrl: string | null
+  favoritesCount: number
+}
+
 export type IGetItemsParams = {
   term?: string
   page?: number

@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import type { FC } from 'react'
 
-import { favoriteItemsQueryOptions } from '@/app/entities/api/favorite/favorites.query'
+import { favoriteItemsQueryOptions } from '@/app/entities/api/favorite'
 import { FavoriteCountComponent } from '@/app/shared/components/favorite-count'
 import { ItemCardComponent } from '@/app/shared/components/item-card/item-card.component'
 import { ListFallBackComponent } from '@/app/shared/components/list-fallback'

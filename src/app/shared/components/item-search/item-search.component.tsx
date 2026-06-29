@@ -1,25 +1,20 @@
 'use client'
 
 import { X } from 'lucide-react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { type FC, useEffect } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
+import { useSearchParams } from 'next/navigation'
+import { type FC, useState } from 'react'
 
+import { useSearchNavigate } from '@/app/shared/hooks/use-search-navigate.hook'
 import { cn } from '@/pkg/theme/lib/utils'
 import { Input } from '@/pkg/theme/ui/input'
 import { SortFilter } from '@/pkg/theme/ui/sort-filter'
 
-interface ISearchValues {
-  term: string
-  sort: 'newest' | 'az' | 'za'
-}
+type TSort = 'newest' | 'az' | 'za'
 
-const validSorts: ISearchValues['sort'][] = ['newest', 'az', 'za']
+const validSorts: TSort[] = ['newest', 'az', 'za']
 
-const toValidSort = (value: string | null): ISearchValues['sort'] =>
-  validSorts.includes(value as ISearchValues['sort'])
-    ? (value as ISearchValues['sort'])
-    : 'newest'
+const toValidSort = (value: string | null): TSort =>
+  validSorts.includes(value as TSort) ? (value as TSort) : 'newest'
 
 interface IProps {
   basePath?: string
@@ -28,44 +23,32 @@ interface IProps {
 export const ItemSearchComponent: FC<Readonly<IProps>> = (props) => {
   const { basePath = '/items' } = props
 
-  const router = useRouter()
   const searchParams = useSearchParams()
 
-  const { register, control, setValue } = useForm<ISearchValues>({
-    defaultValues: {
-      term: searchParams.get('term') ?? '',
-      sort: toValidSort(searchParams.get('sort')),
-    },
-  })
+  const [term, setTerm] = useState(searchParams.get('term') ?? '')
+  const [sort, setSort] = useState<TSort>(toValidSort(searchParams.get('sort')))
 
-  const { term, sort } = useWatch({ control })
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      const params = new URLSearchParams()
-
-      if (term) params.set('term', term)
-      if (sort && sort !== 'newest') params.set('sort', sort)
-      params.set('page', '1')
-
-      router.push(`${basePath}?${params.toString()}`)
-    }, 300)
-
-    return () => clearTimeout(timeout)
-  }, [term, sort, router, basePath])
+  const navigate = useSearchNavigate(basePath)
 
   return (
     <div className="flex items-center gap-2">
       <div className="relative flex-1">
         <Input
-          {...register('term')}
+          value={term}
           placeholder="Search pizzas..."
           className={cn('w-full', term && 'pr-8')}
+          onChange={(e) => {
+            setTerm(e.target.value)
+            navigate(e.target.value, sort)
+          }}
         />
         {term && (
           <button
             type="button"
-            onClick={() => setValue('term', '')}
+            onClick={() => {
+              setTerm('')
+              navigate('', sort)
+            }}
             aria-label="Clear search"
             className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer text-muted-foreground hover:text-foreground"
           >
@@ -74,8 +57,13 @@ export const ItemSearchComponent: FC<Readonly<IProps>> = (props) => {
         )}
       </div>
       <SortFilter
-        value={sort ?? 'newest'}
-        onChange={(val) => setValue('sort', val as ISearchValues['sort'])}
+        value={sort}
+        onChange={(val) => {
+          const newSort = val as TSort
+
+          setSort(newSort)
+          navigate(term, newSort)
+        }}
       />
     </div>
   )
