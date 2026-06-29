@@ -124,7 +124,7 @@ function FormMessage({ className, ...props }: ComponentProps<'p'>) {
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn('text-destructive text-sm min-h-[1.25rem]', className)}
+      className={cn('text-destructive min-h-[1.25rem] text-sm', className)}
       {...props}
     >
       {body}

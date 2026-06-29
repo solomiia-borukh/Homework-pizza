@@ -7,7 +7,7 @@ import { Button } from '@/pkg/theme/ui/button'
 const NotFoundPage: FC = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 text-center">
-      <Pizza className="size-12 text-muted-foreground" />
+      <Pizza className="text-muted-foreground size-12" />
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-semibold">Pizza not found</h1>
         <p className="text-muted-foreground">

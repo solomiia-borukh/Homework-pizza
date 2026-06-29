@@ -21,11 +21,11 @@ export const ItemCardComponent: FC<Readonly<IProps>> = (props) => {
     <Link
       href={`/items/${id}`}
       className={cn(
-        'flex flex-col gap-3 rounded-xl border border-border bg-card p-4',
-        'transition-shadow hover:shadow-md cursor-pointer',
+        'border-border bg-card flex flex-col gap-3 rounded-xl border p-4',
+        'cursor-pointer transition-shadow hover:shadow-md',
       )}
     >
-      <div className="relative flex h-40 w-full items-center justify-center overflow-hidden rounded-lg bg-muted">
+      <div className="bg-muted relative flex h-40 w-full items-center justify-center overflow-hidden rounded-lg">
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -36,16 +36,16 @@ export const ItemCardComponent: FC<Readonly<IProps>> = (props) => {
             priority={priority}
           />
         ) : (
-          <Pizza className="size-16 text-muted-foreground" />
+          <Pizza className="text-muted-foreground size-16" />
         )}
         {favoriteSlot}
       </div>
       <div className="flex flex-col gap-1">
         <div className="flex items-center justify-between gap-2">
-          <h3 className="font-semibold leading-tight">{title}</h3>
+          <h3 className="leading-tight font-semibold">{title}</h3>
           {favoriteCountSlot}
         </div>
-        <p className="line-clamp-2 text-sm text-muted-foreground">
+        <p className="text-muted-foreground line-clamp-2 text-sm">
           {description ?? '—'}
         </p>
       </div>

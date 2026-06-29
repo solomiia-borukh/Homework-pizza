@@ -29,7 +29,7 @@ export const FormInputComponent = <T extends FieldValues>({
         <div className="grid gap-2">
           <label
             htmlFor={field.name}
-            className="text-sm font-medium leading-none"
+            className="text-sm leading-none font-medium"
           >
             {label}
           </label>

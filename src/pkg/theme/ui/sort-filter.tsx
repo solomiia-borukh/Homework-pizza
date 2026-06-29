@@ -42,7 +42,7 @@ export const SortFilter: FC<Readonly<IProps>> = (props) => {
       />
       <Menu.Portal>
         <Menu.Positioner align="end" sideOffset={4} style={{ zIndex: 9999 }}>
-          <Menu.Popup className="min-w-36 rounded-lg border border-border bg-popover p-1 shadow-md outline-none">
+          <Menu.Popup className="border-border bg-popover min-w-36 rounded-lg border p-1 shadow-md outline-none">
             <Menu.RadioGroup
               value={value}
               onValueChange={(val) => {
@@ -57,7 +57,7 @@ export const SortFilter: FC<Readonly<IProps>> = (props) => {
                   className={cn(
                     'flex cursor-pointer items-center justify-between gap-4 rounded-md px-3 py-1.5 text-sm outline-none',
                     'hover:bg-muted',
-                    value === option.value && 'font-medium text-primary',
+                    value === option.value && 'text-primary font-medium',
                   )}
                 >
                   {option.label}

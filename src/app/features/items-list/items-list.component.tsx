@@ -34,7 +34,7 @@ export const ItemsListComponent: FC = () => {
 
   if (!data || data.items.length === 0) {
     return (
-      <p className="text-center text-muted-foreground py-6">No pizzas found</p>
+      <p className="text-muted-foreground py-6 text-center">No pizzas found</p>
     )
   }
 

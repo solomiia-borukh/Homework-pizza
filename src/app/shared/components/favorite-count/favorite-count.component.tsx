@@ -44,7 +44,7 @@ export const FavoriteCountComponent: FC<Readonly<IProps>> = (props) => {
   }, [isFavorited, isSuccess])
 
   return (
-    <span className="flex shrink-0 items-center gap-1 text-sm text-muted-foreground">
+    <span className="text-muted-foreground flex shrink-0 items-center gap-1 text-sm">
       <Heart className="size-4" />
       {count}
     </span>

@@ -22,8 +22,8 @@ export const ItemDetailComponent: FC<IProps> = (props) => {
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 md:px-8">
       <BackButton className="mb-3" />
 
-      <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-4">
-        <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-lg bg-muted sm:h-80">
+      <div className="border-border bg-card flex flex-col gap-4 rounded-xl border p-4">
+        <div className="bg-muted relative flex h-64 w-full items-center justify-center overflow-hidden rounded-lg sm:h-80">
           {item.imageUrl ? (
             <Image
               src={item.imageUrl}
@@ -34,13 +34,13 @@ export const ItemDetailComponent: FC<IProps> = (props) => {
               priority
             />
           ) : (
-            <Pizza className="size-20 text-muted-foreground" />
+            <Pizza className="text-muted-foreground size-20" />
           )}
           <ToggleFavoriteButtonComponent itemId={item.id} />
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex items-start justify-between gap-4">
-            <h1 className="text-2xl font-semibold leading-tight">
+            <h1 className="text-2xl leading-tight font-semibold">
               {item.title}
             </h1>
             <FavoriteCountComponent

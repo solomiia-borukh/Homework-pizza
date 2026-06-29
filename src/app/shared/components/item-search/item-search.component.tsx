@@ -50,7 +50,7 @@ export const ItemSearchComponent: FC<Readonly<IProps>> = (props) => {
               navigate('', sort)
             }}
             aria-label="Clear search"
-            className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer"
           >
             <X className="size-4" />
           </button>

@@ -30,7 +30,7 @@ export const PasswordInput: FC<TProps> = (props) => {
         onClick={toggle}
         tabIndex={-1}
         aria-label={isVisible ? 'Hide password' : 'Show password'}
-        className="absolute inset-y-0 right-0 flex cursor-pointer items-center px-2.5 text-muted-foreground transition-colors hover:text-foreground"
+        className="text-muted-foreground hover:text-foreground absolute inset-y-0 right-0 flex cursor-pointer items-center px-2.5 transition-colors"
       >
         {isVisible ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
       </button>

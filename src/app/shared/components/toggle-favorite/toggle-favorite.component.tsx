@@ -41,7 +41,7 @@ export const ToggleFavoriteButtonComponent: FC<Readonly<IProps>> = (props) => {
       onClick={handleClick}
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       className={cn(
-        'absolute right-2 top-2 z-10 flex size-8 cursor-pointer items-center justify-center rounded-full',
+        'absolute top-2 right-2 z-10 flex size-8 cursor-pointer items-center justify-center rounded-full',
         'bg-white/80 backdrop-blur-sm transition-colors hover:bg-white',
         isPending && 'opacity-60',
       )}

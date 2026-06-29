@@ -26,7 +26,7 @@ export const FavoritesListComponent: FC = () => {
 
   if (!data || data.items.length === 0) {
     return (
-      <p className="py-6 text-center text-muted-foreground">No favorites yet</p>
+      <p className="text-muted-foreground py-6 text-center">No favorites yet</p>
     )
   }
 
