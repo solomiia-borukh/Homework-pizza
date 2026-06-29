@@ -5,7 +5,7 @@ import { Heart } from 'lucide-react'
 import type { FC } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
-import { favoritesQueryOptions } from '@/app/entities/api/favorite/favorites.query'
+import { favoritesIdsQueryOptions } from '@/app/entities/api/favorite/favorites.query'
 
 interface IProps {
   itemId: string
@@ -16,7 +16,7 @@ export const FavoriteCountComponent: FC<Readonly<IProps>> = (props) => {
   const { itemId, initialCount } = props
 
   const [count, setCount] = useState(initialCount)
-  const { data: favorites, isSuccess } = useQuery(favoritesQueryOptions())
+  const { data: favorites, isSuccess } = useQuery(favoritesIdsQueryOptions())
 
   const isFavorited = favorites?.itemIds.includes(itemId) ?? false
   const initializedRef = useRef(false)

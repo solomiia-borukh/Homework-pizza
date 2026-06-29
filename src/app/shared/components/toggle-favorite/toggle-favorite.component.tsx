@@ -5,7 +5,7 @@ import { Heart } from 'lucide-react'
 import type { FC, MouseEvent } from 'react'
 
 import { useToggleFavoriteMutation } from '@/app/entities/api/favorite/favorites.mutation'
-import { favoritesQueryOptions } from '@/app/entities/api/favorite/favorites.query'
+import { favoritesIdsQueryOptions } from '@/app/entities/api/favorite/favorites.query'
 import { useSession } from '@/pkg/auth/client/auth.client'
 import { cn } from '@/pkg/theme/lib/utils'
 
@@ -17,7 +17,7 @@ export const ToggleFavoriteButtonComponent: FC<Readonly<IProps>> = (props) => {
   const { itemId } = props
 
   const { data: session } = useSession()
-  const { data: favorites } = useQuery(favoritesQueryOptions())
+  const { data: favorites } = useQuery(favoritesIdsQueryOptions())
   const { mutate, isPending } = useToggleFavoriteMutation()
 
   if (!session) return null
