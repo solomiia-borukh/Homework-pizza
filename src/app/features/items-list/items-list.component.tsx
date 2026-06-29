@@ -56,6 +56,7 @@ export const ItemsListComponent: FC = () => {
           />
         ))}
       </div>
+
       <Pagination
         currentPage={page}
         totalPages={data.totalPages}

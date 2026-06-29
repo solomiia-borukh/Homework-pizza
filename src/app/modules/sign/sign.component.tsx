@@ -44,10 +44,12 @@ const SignComponent: FC<Readonly<IProps>> = (props) => {
           <div className="absolute inset-0 flex items-center">
             <div className="border-border w-full border-t" />
           </div>
+
           <span className="bg-background text-muted-foreground relative px-2">
             or
           </span>
         </div>
+
         <GoogleAuthButtonComponent onSignIn={mutate} isPending={isPending} />
       </div>
 

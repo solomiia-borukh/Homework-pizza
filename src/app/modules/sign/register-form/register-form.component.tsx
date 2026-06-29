@@ -39,6 +39,7 @@ export const RegisterFormComponent: FC = () => {
           autoComplete="email"
           placeholder="you@example.com"
         />
+
         <FormInputComponent
           control={control}
           name="password"
@@ -46,6 +47,7 @@ export const RegisterFormComponent: FC = () => {
           variant="password"
           autoComplete="new-password"
         />
+
         <Button type="submit" disabled={isPending || !isFormValid}>
           {isPending ? 'Creating account…' : 'Create account'}
         </Button>

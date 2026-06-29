@@ -42,6 +42,7 @@ export const ItemSearchComponent: FC<Readonly<IProps>> = (props) => {
             navigate(e.target.value, sort)
           }}
         />
+
         {term && (
           <button
             type="button"
@@ -56,6 +57,7 @@ export const ItemSearchComponent: FC<Readonly<IProps>> = (props) => {
           </button>
         )}
       </div>
+
       <SortFilter
         value={sort}
         onChange={(val) => {

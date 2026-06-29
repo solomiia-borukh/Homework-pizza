@@ -36,18 +36,22 @@ export const ItemDetailComponent: FC<IProps> = (props) => {
           ) : (
             <Pizza className="text-muted-foreground size-20" />
           )}
+
           <ToggleFavoriteButtonComponent itemId={item.id} />
         </div>
+
         <div className="flex flex-col gap-3">
           <div className="flex items-start justify-between gap-4">
             <h1 className="text-2xl leading-tight font-semibold">
               {item.title}
             </h1>
+
             <FavoriteCountComponent
               itemId={item.id}
               initialCount={item.favoritesCount}
             />
           </div>
+
           {item.description && (
             <p className="text-muted-foreground">{item.description}</p>
           )}

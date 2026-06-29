@@ -38,13 +38,17 @@ export const ItemCardComponent: FC<Readonly<IProps>> = (props) => {
         ) : (
           <Pizza className="text-muted-foreground size-16" />
         )}
+
         {favoriteSlot}
       </div>
+
       <div className="flex flex-col gap-1">
         <div className="flex items-center justify-between gap-2">
           <h3 className="leading-tight font-semibold">{title}</h3>
+
           {favoriteCountSlot}
         </div>
+
         <p className="text-muted-foreground line-clamp-2 text-sm">
           {description ?? '—'}
         </p>
