@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { type ReactNode } from 'react'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { FavoritesListComponent } from '@/app/widgets/favorites-list'
+import { FavoritesListComponent } from '@/app/features/favorites-list'
 
 const fetchMock = vi.hoisted(() => {
   const mock = vi.fn()

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { FavoritesListComponent } from '@/app/widgets/favorites-list'
+import { FavoritesListComponent } from '@/app/features/favorites-list'
 
 const Page: NextPage = () => {
   return <FavoritesListComponent />

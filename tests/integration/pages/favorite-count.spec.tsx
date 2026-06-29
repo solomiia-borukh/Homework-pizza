@@ -5,10 +5,8 @@ import { useSearchParams } from 'next/navigation'
 import { type ReactNode } from 'react'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import {
-  FavoriteCountComponent,
-  ToggleFavoriteButtonComponent,
-} from '@/app/features/toggle-favorite'
+import { FavoriteCountComponent } from '@/app/shared/components/favorite-count'
+import { ToggleFavoriteButtonComponent } from '@/app/shared/components/toggle-favorite'
 
 const fetchMock = vi.hoisted(() => {
   const mock = vi.fn()

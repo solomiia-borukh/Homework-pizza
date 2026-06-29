@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { ItemSearchComponent } from '@/app/features/item-search'
+import { ItemSearchComponent } from '@/app/shared/components/item-search'
 
 vi.mock('next/navigation')
 

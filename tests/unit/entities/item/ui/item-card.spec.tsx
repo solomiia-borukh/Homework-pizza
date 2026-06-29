@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
-import { ItemCardComponent } from '@/app/entities/item'
+import { ItemCardComponent } from '@/app/shared/components/item-card'
 
 const item = {
   id: 'pizza-1',

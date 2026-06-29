@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { type ReactNode } from 'react'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { ItemsListComponent } from '@/app/widgets/items-list'
+import { ItemsListComponent } from '@/app/features/items-list'
 
 const fetchMock = vi.hoisted(() => {
   const mock = vi.fn()

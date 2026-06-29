@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { useRouter } from 'next/navigation'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { RegisterFormComponent } from '@/app/features/register-form'
+import { RegisterFormComponent } from '@/app/modules/sign/register-form'
 
 vi.mock('next/navigation')
 vi.mock('@/pkg/auth/auth-client')

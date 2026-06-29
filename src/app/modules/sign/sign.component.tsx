@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { type FC } from 'react'
 
-import { LoginFormComponent } from '@/app/features/login-form'
-import { RegisterFormComponent } from '@/app/features/register-form'
-import { SocialAuthButtonComponent } from '@/app/features/social-auth-button'
+import { SocialAuthButtonComponent } from '@/app/modules/sign/google-auth-button'
+import { LoginFormComponent } from '@/app/modules/sign/login-form'
+import { RegisterFormComponent } from '@/app/modules/sign/register-form'
 import { WrapperComponent } from '@/app/shared/components/wrapper'
 import { Button } from '@/pkg/theme/ui/button'
 
