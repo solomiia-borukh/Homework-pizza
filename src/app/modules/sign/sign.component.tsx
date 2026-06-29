@@ -1,7 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import { type FC } from 'react'
 
-import { SocialAuthButtonComponent } from '@/app/modules/sign/google-auth-button'
+import { useGoogleSignInMutation } from '@/app/entities/api/auth'
+import { GoogleAuthButtonComponent } from '@/app/modules/sign/google-auth-button'
 import { LoginFormComponent } from '@/app/modules/sign/login-form'
 import { RegisterFormComponent } from '@/app/modules/sign/register-form'
 import { WrapperComponent } from '@/app/shared/components/wrapper'
@@ -13,6 +16,7 @@ interface IProps {
 
 const SignComponent: FC<Readonly<IProps>> = (props) => {
   const { variant } = props
+  const { mutate, isPending } = useGoogleSignInMutation()
 
   return (
     <WrapperComponent
@@ -44,7 +48,7 @@ const SignComponent: FC<Readonly<IProps>> = (props) => {
             or
           </span>
         </div>
-        <SocialAuthButtonComponent />
+        <GoogleAuthButtonComponent onSignIn={mutate} isPending={isPending} />
       </div>
 
       <p className="text-muted-foreground text-center text-sm">

@@ -6,7 +6,7 @@ import {
 import type { NextPage } from 'next'
 import { type SearchParams } from 'next/dist/server/request/search-params'
 
-import { itemsQueryOptions } from '@/app/entities/api/item/items.query'
+import { itemsQueryOptions } from '@/app/entities/api/item'
 import { ItemsListComponent } from '@/app/features/items-list'
 
 interface IProps {

@@ -1,1 +1,1 @@
-export { SocialAuthButtonComponent } from './google-auth-button.component'
+export { GoogleAuthButtonComponent } from './google-auth-button.component'

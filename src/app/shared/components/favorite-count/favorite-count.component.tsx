@@ -5,7 +5,8 @@ import { Heart } from 'lucide-react'
 import type { FC } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
-import { favoritesIdsQueryOptions } from '@/app/entities/api/favorite/favorites.query'
+import { favoritesIdsQueryOptions } from '@/app/entities/api/favorite'
+import { useSession } from '@/pkg/auth/client/auth.client'
 
 interface IProps {
   itemId: string
@@ -16,7 +17,11 @@ export const FavoriteCountComponent: FC<Readonly<IProps>> = (props) => {
   const { itemId, initialCount } = props
 
   const [count, setCount] = useState(initialCount)
-  const { data: favorites, isSuccess } = useQuery(favoritesIdsQueryOptions())
+  const { data: session } = useSession()
+  const { data: favorites, isSuccess } = useQuery({
+    ...favoritesIdsQueryOptions(),
+    enabled: !!session,
+  })
 
   const isFavorited = favorites?.itemIds.includes(itemId) ?? false
   const initializedRef = useRef(false)
