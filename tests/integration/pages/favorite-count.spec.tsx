@@ -19,7 +19,7 @@ const fetchMock = vi.hoisted(() => {
 const mockUseSession = vi.hoisted(() => vi.fn())
 
 vi.mock('next/navigation')
-vi.mock('@/pkg/auth/auth-client', () => ({
+vi.mock('@/pkg/auth/client/auth.client', () => ({
   useSession: mockUseSession,
 }))
 

@@ -22,13 +22,10 @@ afterEach(() => {
   vi.resetAllMocks()
 })
 
-const renderSearch = async () => {
+const renderSearch = () => {
   const user = userEvent.setup()
 
   render(<ItemSearchComponent basePath="/favorites" />)
-
-  await waitFor(() => expect(mockPush).toHaveBeenCalled())
-  mockPush.mockClear()
 
   return user
 }

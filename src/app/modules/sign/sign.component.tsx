@@ -25,7 +25,7 @@ const SignComponent: FC<Readonly<IProps>> = (props) => {
     >
       <div className="grid gap-2 text-center">
         <h1 className="text-2xl font-semibold">
-          {variant === 'sign-in' ? 'Welcome back' : 'Create yout account'}
+          {variant === 'sign-in' ? 'Welcome back' : 'Create your account'}
         </h1>
 
         <p className="text-muted-foreground text-sm">

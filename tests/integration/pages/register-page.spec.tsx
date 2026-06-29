@@ -102,7 +102,7 @@ describe('RegisterPage', () => {
       const link = screen.getByRole('link', { name: /sign in/i })
 
       expect(link).toBeInTheDocument()
-      expect(link).toHaveAttribute('href', '/login')
+      expect(link).toHaveAttribute('href', '/sign-in')
     })
   })
 

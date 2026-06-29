@@ -22,13 +22,10 @@ afterEach(() => {
   vi.resetAllMocks()
 })
 
-const renderSearch = async () => {
+const renderSearch = () => {
   const user = userEvent.setup()
 
   render(<ItemSearchComponent />)
-
-  await waitFor(() => expect(mockPush).toHaveBeenCalled())
-  mockPush.mockClear()
 
   return user
 }
@@ -84,8 +81,6 @@ describe('Integration | Component | ItemSearch', () => {
       const user = userEvent.setup()
 
       render(<ItemSearchComponent />)
-      await waitFor(() => expect(mockPush).toHaveBeenCalled())
-      mockPush.mockClear()
 
       await user.type(screen.getByPlaceholderText('Search pizzas...'), 'pizza')
 
@@ -105,8 +100,6 @@ describe('Integration | Component | ItemSearch', () => {
       const user = userEvent.setup()
 
       render(<ItemSearchComponent />)
-      await waitFor(() => expect(mockPush).toHaveBeenCalled())
-      mockPush.mockClear()
 
       await user.clear(screen.getByPlaceholderText('Search pizzas...'))
 

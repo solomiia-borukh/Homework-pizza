@@ -19,7 +19,7 @@ vi.mock('next/navigation')
 
 const mockUseSession = vi.hoisted(() => vi.fn())
 
-vi.mock('@/pkg/auth/auth-client', () => ({
+vi.mock('@/pkg/auth/client/auth.client', () => ({
   useSession: mockUseSession,
 }))
 
