@@ -1,11 +1,12 @@
 'use client'
 
-import { Input } from '@shared/components/input'
 import { Eye, EyeOff } from 'lucide-react'
 import type { FC } from 'react'
 import { type ComponentProps, useState } from 'react'
 
 import { cn } from '@/pkg/theme/lib/utils'
+
+import { Input } from './input'
 
 type TProps = Omit<ComponentProps<'input'>, 'type'>
 

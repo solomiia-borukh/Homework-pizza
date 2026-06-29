@@ -1,12 +1,13 @@
 'use client'
 
 import { Menu } from '@base-ui/react/menu'
-import { Button } from '@shared/components/button'
 import { ArrowUpDown, Check } from 'lucide-react'
 import type { FC } from 'react'
 import { useState } from 'react'
 
 import { cn } from '@/pkg/theme/lib/utils'
+
+import { Button } from './button'
 
 interface IOption {
   value: string
@@ -25,7 +26,7 @@ const defaultOptions = [
   { value: 'za', label: 'Z → A' },
 ]
 
-export const SortFilterComponent: FC<Readonly<IProps>> = (props) => {
+export const SortFilter: FC<Readonly<IProps>> = (props) => {
   const { options = defaultOptions, value, onChange } = props
 
   const [open, setOpen] = useState(false)

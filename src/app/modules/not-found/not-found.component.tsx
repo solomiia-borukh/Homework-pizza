@@ -2,8 +2,8 @@ import { FileSearch } from 'lucide-react'
 import Link from 'next/link'
 import { type FC } from 'react'
 
-import { Button } from '@/app/shared/components/button'
-import { WrapperComponent } from '@/app/shared/ui/wrapper'
+import { WrapperComponent } from '@/app/shared/components/wrapper'
+import { Button } from '@/pkg/theme/ui/button'
 
 const NotFound: FC = () => {
   return (

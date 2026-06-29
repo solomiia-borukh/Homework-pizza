@@ -4,8 +4,8 @@ import { type FC } from 'react'
 import { LoginFormComponent } from '@/app/features/login-form'
 import { RegisterFormComponent } from '@/app/features/register-form'
 import { SocialAuthButtonComponent } from '@/app/features/social-auth-button'
-import { Button } from '@/app/shared/components/button'
-import { WrapperComponent } from '@/app/shared/ui/wrapper'
+import { WrapperComponent } from '@/app/shared/components/wrapper'
+import { Button } from '@/pkg/theme/ui/button'
 
 interface IProps {
   variant: 'sign-in' | 'sign-up'
@@ -50,10 +50,7 @@ const SignComponent: FC<Readonly<IProps>> = (props) => {
       <p className="text-muted-foreground text-center text-sm">
         {`${variant === 'sign-in' ? `Don't ` : 'Already '}have an account?`}{' '}
         <Button variant="ghost" asChild>
-          <Link
-            href={variant === 'sign-in' ? '/sign-up' : '/sign-in'}
-            className="underline underline-offset-4 cursor-pointer"
-          >
+          <Link href={variant === 'sign-in' ? '/sign-up' : '/sign-in'}>
             {variant === 'sign-in' ? 'Sign up' : 'Sign in'}
           </Link>
         </Button>

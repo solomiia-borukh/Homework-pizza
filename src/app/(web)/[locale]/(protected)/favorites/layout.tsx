@@ -1,10 +1,9 @@
-import { buttonVariants } from '@shared/components/button'
 import Link from 'next/link'
 import type { FC, PropsWithChildren } from 'react'
 import { Suspense } from 'react'
 
 import { ItemSearchComponent } from '@/app/features/item-search'
-import { cn } from '@/pkg/theme/lib/utils'
+import { Button } from '@/pkg/theme/ui/button'
 
 const Layout: FC<Readonly<PropsWithChildren>> = (props) => {
   const { children } = props
@@ -14,12 +13,9 @@ const Layout: FC<Readonly<PropsWithChildren>> = (props) => {
       <div className="mb-6 flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">My Favorites</h1>
-          <Link
-            href="/items"
-            className={cn(buttonVariants({ variant: 'ghost' }))}
-          >
-            All Pizzas
-          </Link>
+          <Button variant="ghost" asChild>
+            <Link href="/items">All Pizzas</Link>
+          </Button>
         </div>
         <Suspense>
           <ItemSearchComponent basePath="/favorites" />

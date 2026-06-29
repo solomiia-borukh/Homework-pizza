@@ -1,17 +1,6 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '@shared/components/button'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@shared/components/form'
-import { Input } from '@shared/components/input'
-import { PasswordInput } from '@shared/components/password-input'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import type { FC } from 'react'
@@ -20,6 +9,17 @@ import { toast } from 'sonner'
 
 import { SRegisterForm } from '@/app/entities/validation'
 import { signUp } from '@/pkg/auth/client/auth.client'
+import { Button } from '@/pkg/theme/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/pkg/theme/ui/form'
+import { Input } from '@/pkg/theme/ui/input'
+import { PasswordInput } from '@/pkg/theme/ui/password-input'
 
 import type { IRegisterForm } from './register-form.interface'
 

@@ -1,9 +1,8 @@
-import { buttonVariants } from '@shared/components/button'
 import { Pizza } from 'lucide-react'
 import Link from 'next/link'
 import type { FC } from 'react'
 
-import { cn } from '@/pkg/theme/lib/utils'
+import { Button } from '@/pkg/theme/ui/button'
 
 const NotFoundPage: FC = () => {
   return (
@@ -15,9 +14,9 @@ const NotFoundPage: FC = () => {
           The page you are looking for does not exist.
         </p>
       </div>
-      <Link href="/items" className={cn(buttonVariants())}>
-        Browse pizzas
-      </Link>
+      <Button asChild>
+        <Link href="/items">Browse pizzas</Link>
+      </Button>
     </div>
   )
 }

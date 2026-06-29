@@ -2,7 +2,6 @@
 // See: https://next-intl.dev/docs/workflows/typescript#messages-arguments
 
 declare const messages: {
-  project_name: 'Homework'
-}
-
-export default messages
+  "project_name": "Homework"
+};
+export default messages;

@@ -1,7 +1,6 @@
 'use client'
 
 import { Slot } from '@radix-ui/react-slot'
-import { Label } from '@shared/components/label'
 import type { ComponentProps } from 'react'
 import { createContext, useContext, useId } from 'react'
 import {
@@ -14,6 +13,8 @@ import {
 } from 'react-hook-form'
 
 import { cn } from '@/pkg/theme/lib/utils'
+
+import { Label } from './label'
 
 const Form = FormProvider
 

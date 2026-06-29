@@ -1,13 +1,13 @@
 'use client'
 
-import { Input } from '@shared/components/input'
-import { SortFilterComponent } from '@shared/components/sort-filter'
 import { X } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { type FC, useEffect } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 
 import { cn } from '@/pkg/theme/lib/utils'
+import { Input } from '@/pkg/theme/ui/input'
+import { SortFilter } from '@/pkg/theme/ui/sort-filter'
 
 interface ISearchValues {
   term: string
@@ -73,7 +73,7 @@ export const ItemSearchComponent: FC<Readonly<IProps>> = (props) => {
           </button>
         )}
       </div>
-      <SortFilterComponent
+      <SortFilter
         value={sort ?? 'newest'}
         onChange={(val) => setValue('sort', val as ISearchValues['sort'])}
       />

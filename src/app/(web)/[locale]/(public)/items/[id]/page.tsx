@@ -1,4 +1,3 @@
-import { BackButtonComponent } from '@shared/components/back-button'
 import { count, eq } from 'drizzle-orm'
 import { Pizza } from 'lucide-react'
 import type { NextPage } from 'next'
@@ -12,6 +11,7 @@ import {
   ToggleFavoriteButtonComponent,
 } from '@/app/features/toggle-favorite'
 import { db } from '@/config/db'
+import { BackButton } from '@/pkg/theme/ui/back-button'
 
 interface IProps {
   params: Promise<{ id: string }>
@@ -38,7 +38,8 @@ const Page: NextPage<IProps> = async (props) => {
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 md:px-8">
-      <BackButtonComponent />
+      <BackButton className="mb-3" />
+
       <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-4">
         <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-lg bg-muted sm:h-80">
           {item.imageUrl ? (

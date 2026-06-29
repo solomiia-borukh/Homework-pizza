@@ -10,7 +10,7 @@ import {
   ToggleFavoriteButtonComponent,
 } from '@/app/features/toggle-favorite'
 import { ListFallBackComponent } from '@/app/shared/components/list-fallback'
-import { PaginationComponent } from '@/app/shared/components/pagination'
+import { Pagination } from '@/pkg/theme/ui/pagination'
 
 export const ItemsListComponent: FC = () => {
   const searchParams = useSearchParams()
@@ -57,7 +57,7 @@ export const ItemsListComponent: FC = () => {
           />
         ))}
       </div>
-      <PaginationComponent
+      <Pagination
         currentPage={page}
         totalPages={data.totalPages}
         onPageChange={setPage}

@@ -1,7 +1,8 @@
-import { Button } from '@shared/components/button'
 import type { FC } from 'react'
 
 import { cn } from '@/pkg/theme/lib/utils'
+
+import { Button } from './button'
 
 interface IProps {
   currentPage: number
@@ -9,7 +10,7 @@ interface IProps {
   onPageChange: (page: number) => void
 }
 
-export const PaginationComponent: FC<Readonly<IProps>> = (props) => {
+export const Pagination: FC<Readonly<IProps>> = (props) => {
   const { currentPage, totalPages, onPageChange } = props
 
   return (
