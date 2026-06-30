@@ -29,7 +29,7 @@ export const LoginFormComponent: FC = () => {
     <Form {...form}>
       <form
         onSubmit={handleSubmit((values) => mutate(values))}
-        className="grid gap-1"
+        className="grid gap-2"
         noValidate
       >
         <FormInputComponent

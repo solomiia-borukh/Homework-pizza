@@ -23,6 +23,7 @@ export const Pagination: FC<Readonly<IProps>> = (props) => {
       >
         ←
       </Button>
+
       {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
         <Button
           key={p}
@@ -34,6 +35,7 @@ export const Pagination: FC<Readonly<IProps>> = (props) => {
           {p}
         </Button>
       ))}
+
       <Button
         variant="outline"
         size="sm"

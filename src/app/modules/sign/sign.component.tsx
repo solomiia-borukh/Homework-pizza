@@ -18,6 +18,8 @@ const SignComponent: FC<Readonly<IProps>> = (props) => {
   const { variant } = props
   const { mutate, isPending } = useGoogleSignInMutation()
 
+  const isSignIn = variant === 'sign-in'
+
   return (
     <WrapperComponent
       type="main"
@@ -25,21 +27,16 @@ const SignComponent: FC<Readonly<IProps>> = (props) => {
     >
       <div className="grid gap-2 text-center">
         <h1 className="text-2xl font-semibold">
-          {variant === 'sign-in' ? 'Welcome back' : 'Create your account'}
+          {isSignIn ? 'Welcome back' : 'Create your account'}
         </h1>
 
         <p className="text-muted-foreground text-sm">
-          {`${variant === 'sign-in' ? 'Sign in' : 'Sign up'}with your email and a password.`}
+          {`${isSignIn ? 'Sign in ' : 'Sign up '}with your email and a password.`}
         </p>
       </div>
 
       <div className="flex flex-col gap-2">
-        {variant === 'sign-in' ? (
-          <LoginFormComponent />
-        ) : (
-          <RegisterFormComponent />
-        )}
-
+        {isSignIn ? <LoginFormComponent /> : <RegisterFormComponent />}
         <div className="relative text-center text-sm">
           <div className="absolute inset-0 flex items-center">
             <div className="border-border w-full border-t" />
@@ -54,10 +51,10 @@ const SignComponent: FC<Readonly<IProps>> = (props) => {
       </div>
 
       <p className="text-muted-foreground text-center text-sm">
-        {`${variant === 'sign-in' ? `Don't ` : 'Already '}have an account?`}{' '}
+        {`${isSignIn ? `Don't ` : 'Already '}have an account?`}{' '}
         <Button variant="ghost" asChild>
-          <Link href={variant === 'sign-in' ? '/sign-up' : '/sign-in'}>
-            {variant === 'sign-in' ? 'Sign up' : 'Sign in'}
+          <Link href={isSignIn ? '/sign-up' : '/sign-in'}>
+            {isSignIn ? 'Sign up' : 'Sign in'}
           </Link>
         </Button>
       </p>

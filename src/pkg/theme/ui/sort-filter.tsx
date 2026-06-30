@@ -40,6 +40,7 @@ export const SortFilter: FC<Readonly<IProps>> = (props) => {
           </Button>
         }
       />
+
       <Menu.Portal>
         <Menu.Positioner align="end" sideOffset={4} style={{ zIndex: 9999 }}>
           <Menu.Popup className="border-border bg-popover min-w-36 rounded-lg border p-1 shadow-md outline-none">
@@ -61,6 +62,7 @@ export const SortFilter: FC<Readonly<IProps>> = (props) => {
                   )}
                 >
                   {option.label}
+
                   <Menu.RadioItemIndicator>
                     <Check className="size-3.5" />
                   </Menu.RadioItemIndicator>
