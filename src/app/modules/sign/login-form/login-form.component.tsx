@@ -17,7 +17,7 @@ export const LoginFormComponent: FC = () => {
   const form = useForm<ILoginForm>({
     resolver: zodResolver(SLoginForm),
     defaultValues: { email: '', password: '' },
-    mode: 'onBlur',
+    mode: 'onTouched',
   })
 
   const { handleSubmit, control } = form

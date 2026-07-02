@@ -16,7 +16,7 @@ export const RegisterFormComponent: FC = () => {
   const form = useForm<IRegisterForm>({
     resolver: zodResolver(SRegisterForm),
     defaultValues: { email: '', password: '' },
-    mode: 'onBlur',
+    mode: 'onTouched',
   })
 
   const { handleSubmit, control } = form
